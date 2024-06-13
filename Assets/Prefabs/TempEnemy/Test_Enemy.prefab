@@ -191,6 +191,8 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnDeathEventChannel: {fileID: 11400000, guid: 4bd79448e3cac464ab76ce869a8fb8b9,
+    type: 2}
   isDamagable: 1
   isDead: 0
 --- !u!114 &6630281983739907160

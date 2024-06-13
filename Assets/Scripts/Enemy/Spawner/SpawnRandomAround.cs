@@ -43,7 +43,6 @@ public class SpawnRandomAround : Spawner
             agent.speed = m_maxSpeed;
         }
 
-
         return go;
     }
 

@@ -19,6 +19,9 @@ public struct BeatLeniency
  */
 public class BeatCombatPlayer : CombatPlayer
 {
+    [SerializeField] private BaseAttackComponent m_critAttack;
+
+
     public BeatLeniency m_beatLeniency = new() { before = 0.1f, after = 0.1f };
     public BeatLeniency m_beatPerfect = new() { before = 0.01f, after = 0.01f };
 
@@ -28,6 +31,8 @@ public class BeatCombatPlayer : CombatPlayer
 
     [SerializeField] private int m_failedFrame;
 
+    private float m_baseDamage;
+
     private void Start()
     {
         m_beatLeniency.before /= Conductor.Instance.secPerBeat;
@@ -35,6 +40,8 @@ public class BeatCombatPlayer : CombatPlayer
 
         m_beatPerfect.before /= Conductor.Instance.secPerBeat;
         m_beatPerfect.after /= Conductor.Instance.secPerBeat;
+
+        m_baseDamage = attackData.damage;
     }
 
     protected override void Fire(InputAction.CallbackContext obj)
@@ -51,11 +58,11 @@ public class BeatCombatPlayer : CombatPlayer
 
         if (IsWithinTolerance(m_beatPerfect))
         {
-            OnPerfect.Invoke();
-            TriggerAttack(transform.forward * forwardOffset);
+            TriggerCritAttack();
         }
         else if (IsWithinToleranceNotify(m_beatLeniency))
         {
+            attackData.damage = m_baseDamage;
             TriggerAttack(transform.forward * forwardOffset);
         }
         else
@@ -65,6 +72,15 @@ public class BeatCombatPlayer : CombatPlayer
             OnFailedFrame.Invoke(m_failedFrame);
         }
 
+    }
+
+    private void TriggerCritAttack()
+    {
+        OnPerfect.Invoke();
+
+        attackData.damage = 2 * m_baseDamage;
+
+        m_critAttack?.Attack(this, transform.forward * forwardOffset);
     }
 
     private bool IsWithinTolerance(BeatLeniency beatLeniency)

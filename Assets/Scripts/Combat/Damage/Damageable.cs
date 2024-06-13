@@ -26,6 +26,8 @@ public class Damageable : MonoBehaviour, IDamageable
     public UnityEvent<float> OnDamaged, OnHeal;
     public UnityEvent OnDeath;
 
+    public EventSO.EventChannelSO OnDeathEventChannel;
+
     public float HP { get; protected set; }
 
     [Header("Stats")]
@@ -80,6 +82,7 @@ public class Damageable : MonoBehaviour, IDamageable
         if (HP <= 0)
         {
             OnDeath.Invoke();
+            OnDeathEventChannel?.Invoke();
             isDead = true;
 
             if (m_destroySelf) { Destroy(gameObject, m_destroyTime); }

@@ -25,7 +25,7 @@ public class AutoChase : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (m_damageable.isDead)
+        if (m_damageable == null || m_damageable.isDead)
         {
             enabled = false;
             m_agent.ResetPath();

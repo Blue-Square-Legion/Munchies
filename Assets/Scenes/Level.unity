@@ -1398,8 +1398,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6a3f62fd3724af248853f63449bf91c9, type: 2}
+  m_sharedMaterial: {fileID: 7474629930690200332, guid: 6a3f62fd3724af248853f63449bf91c9,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1931,6 +1932,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8943293756189050667, guid: 8b9ccd6a20aa85a4ba96d5b8efecec68,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a3f62fd3724af248853f63449bf91c9,
+        type: 2}
+    - target: {fileID: 8943293756189050667, guid: 8b9ccd6a20aa85a4ba96d5b8efecec68,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

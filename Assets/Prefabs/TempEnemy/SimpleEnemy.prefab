@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1127688387912655185}
   - component: {fileID: 1918244635940576042}
   m_Layer: 0
-  m_Name: Snake
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -202.20001, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7212685188853497549}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff6a45e386c0a5a42820332306de7f86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e84d54343602a9a4aa4504fb1c7380a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sprite: {fileID: 917912204075065768}
-  m_isDefaultRight: 0
+  m_isDefaultRight: 1
 --- !u!114 &1918244635940576042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 586409484870188876, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}
       propertyPath: m_Name
-      value: Snake
+      value: SimpleEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4297676850029432419, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}

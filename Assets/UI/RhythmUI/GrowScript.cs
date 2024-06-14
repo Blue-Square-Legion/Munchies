@@ -37,7 +37,6 @@ public class GrowScript : MonoBehaviour
     {
         if (m_growTimer.isRunning)
         {
-            print("Already Growing");
             return;
         }
 

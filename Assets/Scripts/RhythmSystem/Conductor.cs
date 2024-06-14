@@ -28,9 +28,7 @@ public class Conductor : MonoBehaviour
     //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
 
-
     public UnityEvent<int> OnBeat;
-    public UnityEvent<string> OnTick;
 
     private void Awake()
     {
@@ -74,7 +72,5 @@ public class Conductor : MonoBehaviour
             songPositionInBeatInt = (int)songPositionInBeats;
             OnBeat.Invoke(songPositionInBeatInt);
         }
-
-        OnTick.Invoke(songPositionInBeats.ToString());
     }
 }

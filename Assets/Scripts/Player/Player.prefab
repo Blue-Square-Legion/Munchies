@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 5768149339316570496}
   - component: {fileID: 4276658101460031072}
   - component: {fileID: 5134230862614573285}
+  - component: {fileID: 4237121792267225045}
   - component: {fileID: 6156757530923319495}
   - component: {fileID: 776137579417125528}
   - component: {fileID: 7560401357004507868}
@@ -196,6 +197,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4237121792267225045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174719023214600006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d482369798a84d9e1a59fb566601d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_dashTime: 0.25
+  m_speed: 20
 --- !u!114 &6156757530923319495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,27 +238,6 @@ MonoBehaviour:
   m_mainCamera: {fileID: 0}
   forwardOffset: 1
   m_critAttack: {fileID: 0}
-  m_beatLeniency:
-    before: 0.1
-    after: 0.1
-  m_beatPerfect:
-    before: 0.01
-    after: 0.01
-  OnPerfect:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEarly:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLate:
-    m_PersistentCalls:
-      m_Calls: []
-  OnFailedTime:
-    m_PersistentCalls:
-      m_Calls: []
-  OnFailedFrame:
-    m_PersistentCalls:
-      m_Calls: []
   m_failedFrame: 0
 --- !u!114 &776137579417125528
 MonoBehaviour:
@@ -289,6 +283,7 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnDeathEventChannel: {fileID: 0}
   isDamagable: 1
   isDead: 0
 --- !u!114 &7560401357004507868

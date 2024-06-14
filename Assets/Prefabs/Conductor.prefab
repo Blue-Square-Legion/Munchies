@@ -69,11 +69,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_beatNormal:
-    before: 0.1
+    before: 0.2
     after: 0.1
   m_beatPerfect:
-    before: 0.01
-    after: 0.01
+    before: 0.02
+    after: 0.02
   m_beatWarn:
     before: 0
     after: 0.3

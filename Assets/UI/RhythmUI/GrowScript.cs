@@ -12,7 +12,7 @@ public class GrowScript : MonoBehaviour
     [SerializeField] private float m_shrinkTime = 0.1f;
 
     private RectTransform m_rectTransform;
-    private TimeoutTick m_growTimer, m_shrinkTimer;
+    private TimeoutTickPercent m_growTimer, m_shrinkTimer;
 
     private Vector3 m_defaultScale;
     private Vector3 m_startScale;

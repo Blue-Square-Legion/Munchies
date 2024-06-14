@@ -99,12 +99,32 @@ namespace Util
         }
     }
 
-
     public class TimeoutTick : Timeout
     {
         public Action<float> OnTick;
 
-        public TimeoutTick(float time) : base(time)
+        public TimeoutTick(float time) : base(time) { }
+
+        protected override void OnTickHandler(float time)
+        {
+            currentTime += time;
+            if (currentTime >= targetTime)
+            {
+                Stop();
+                OnComplete?.Invoke();
+            }
+            else
+            {
+                OnTick.Invoke(time);
+            }
+        }
+    }
+
+    public class TimeoutTickPercent : Timeout
+    {
+        public Action<float> OnTick;
+
+        public TimeoutTickPercent(float time) : base(time)
         {
 
         }

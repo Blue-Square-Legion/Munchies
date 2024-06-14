@@ -15,7 +15,7 @@ public class ColorChange : MonoBehaviour
     private Image m_image;
     private Color m_defaultColor;
 
-    private TimeoutTick m_timer;
+    private TimeoutTickPercent m_timer;
 
     private void Awake()
     {

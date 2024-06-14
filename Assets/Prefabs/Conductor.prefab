@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5963192091746963011}
   - component: {fileID: -450704429086754642}
+  - component: {fileID: 7557656765918741744}
   - component: {fileID: -1337995320248967263}
   m_Layer: 0
   m_Name: Conductor
@@ -55,7 +56,37 @@ MonoBehaviour:
   OnBeat:
     m_PersistentCalls:
       m_Calls: []
-  OnTick:
+--- !u!114 &7557656765918741744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753971486913104607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9284469d0dbddb945977e4f3393ee5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_beatNormal:
+    before: 0.1
+    after: 0.1
+  m_beatPerfect:
+    before: 0.01
+    after: 0.01
+  m_beatWarn:
+    before: 0
+    after: 0.3
+  OnPerfect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNormal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWarn:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMissFrame:
     m_PersistentCalls:
       m_Calls: []
 --- !u!82 &-1337995320248967263
@@ -67,7 +98,8 @@ AudioSource:
   m_GameObject: {fileID: 6753971486913104607}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2052548826870162189, guid: ef91bbcec34c4954d8f7eca125d1bbf3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

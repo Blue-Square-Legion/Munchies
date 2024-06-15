@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48c9f8eb4f4a514c9698432393f7c87, type: 3}
   m_Name: AddMultiplier
   m_EditorClassIdentifier: 
-  _testData: 0
+  _testData: 5

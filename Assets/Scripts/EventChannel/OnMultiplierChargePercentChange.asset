@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6256a452bea0f841a014e66c2bbc826, type: 3}
   m_Name: OnMultiplierChargePercentChange
   m_EditorClassIdentifier: 
-  _testData: 0
+  _testData: 0.2

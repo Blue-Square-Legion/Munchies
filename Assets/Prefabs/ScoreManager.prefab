@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657b870451e8f5948b02f9477aba26b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_multiplierRequiredCharge: 25
+  m_multiplierRequiredCharge: 10
   m_maxMultiplier: 4
   m_minMultiplierCharge: 0
   m_multiplerDecayRatePerBeat: 0.1

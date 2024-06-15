@@ -190,9 +190,20 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
-  OnDeathEventChannel: {fileID: 11400000, guid: 4bd79448e3cac464ab76ce869a8fb8b9,
-    type: 2}
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f4ea7ab4210c73f45b97884598b92725, type: 2}
+        m_TargetAssemblyTypeName: EventSO.GenericEventChannelSO`1[[System.Int32,
+          mscorlib
+        m_MethodName: Invoke
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   isDamagable: 1
   isDead: 0
 --- !u!114 &6630281983739907160

@@ -209,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5d482369798a84d9e1a59fb566601d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dashTime: 0.25
-  m_speed: 20
+  m_dashTime: 0.15
+  m_speed: 40
 --- !u!114 &6156757530923319495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +237,8 @@ MonoBehaviour:
     m_Bits: 8
   m_mainCamera: {fileID: 0}
   forwardOffset: 1
-  m_critAttack: {fileID: 0}
+  m_critAttack: {fileID: 5036484554761186899, guid: 39e06dbbdd1d51049b5e3bec3596a7d4,
+    type: 3}
   m_failedFrame: 0
 --- !u!114 &776137579417125528
 MonoBehaviour:
@@ -276,14 +277,25 @@ MonoBehaviour:
         m_CallState: 2
   OnDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 96c9123dc1866654a88fe702b08bf80d, type: 2}
+        m_TargetAssemblyTypeName: EventSO.EventChannelSO, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  OnDeathEventChannel: {fileID: 0}
   isDamagable: 1
   isDead: 0
 --- !u!114 &7560401357004507868

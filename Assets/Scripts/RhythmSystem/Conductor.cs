@@ -36,9 +36,6 @@ public class Conductor : MonoBehaviour
     public UnityEvent<int> OnBeatBefore;
     public UnityEvent<int> OnBeatCurrent;
 
-    public IntEventChannel OnBeforeBeat, OnBeat;
-
-
     public int songPositionInBeatInt { get; private set; }
     public float BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
     public float songPositionInBeats => data.songPositionInBeats;
@@ -91,14 +88,12 @@ public class Conductor : MonoBehaviour
             //Trigger Early beat for animations
             m_beatTracker = songPosition + 1;
             OnBeatBefore.Invoke(m_beatTracker);
-            OnBeforeBeat.Invoke(m_beatTracker);
         }
         else if (songPosition != songPositionInBeatInt)
         {
             //Trigger On Beat timing for Enemy
             songPositionInBeatInt = songPosition;
             OnBeatCurrent.Invoke(songPositionInBeatInt);
-            OnBeat.Invoke(songPositionInBeatInt);
         }
     }
 }

@@ -47,15 +47,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songBpm: 0
-  secPerBeat: 0
-  songPosition: 0
-  songPositionInBeats: 0
-  songPositionInBeatInt: 0
-  dspSongTime: 0
-  musicSource: {fileID: -1337995320248967263}
-  OnBeat:
+  preBeatTime: 0.1
+  data:
+    secPerBeat: 0
+    songPosition: 0
+    songPositionInBeats: 0
+    dspSongTime: 0
+  OnBeatBefore:
     m_PersistentCalls:
       m_Calls: []
+  OnBeatCurrent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBeforeBeat: {fileID: 11400000, guid: c3f50e1e858fc6e4bb55b111adbbf742, type: 2}
+  OnBeat: {fileID: 11400000, guid: e2bb18a2f19bbee45aaf0cffe2c813f3, type: 2}
 --- !u!114 &7557656765918741744
 MonoBehaviour:
   m_ObjectHideFlags: 0

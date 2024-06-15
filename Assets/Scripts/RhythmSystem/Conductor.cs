@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using EventSO;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Conductor : MonoBehaviour
+
+[Serializable]
+public struct ConductorData
 {
-    public static Conductor Instance;
-
-
-    //Song beats per minute
-    //This is determined by the song you're trying to sync up to
-    public float songBpm;
-
     //The number of seconds for each song beat
     public float secPerBeat;
 
@@ -20,15 +15,36 @@ public class Conductor : MonoBehaviour
 
     //Current song position, in beats
     public float songPositionInBeats;
-    public int songPositionInBeatInt;
 
     //How many seconds have passed since the song started
     public float dspSongTime;
+}
 
-    //an AudioSource attached to this GameObject that will play the music.
-    public AudioSource musicSource;
+public class Conductor : MonoBehaviour
+{
+    public static Conductor Instance;
 
-    public UnityEvent<int> OnBeat;
+    //Song beats per minute
+    //This is determined by the song you're trying to sync up to
+    public float songBpm;
+
+    //Trigger on beat abit early to allow for animation timing
+    public float preBeatTime = 0.1f;
+
+    public ConductorData data;
+
+    public UnityEvent<int> OnBeatBefore;
+    public UnityEvent<int> OnBeatCurrent;
+
+    public IntEventChannel OnBeforeBeat, OnBeat;
+
+
+    public int songPositionInBeatInt { get; private set; }
+    public float BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
+    public float songPositionInBeats => data.songPositionInBeats;
+
+    private AudioSource m_musicSource;
+    private int m_beatTracker = 0;
 
     private void Awake()
     {
@@ -43,33 +59,45 @@ public class Conductor : MonoBehaviour
         }
 
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+        m_musicSource = GetComponent<AudioSource>();
 
-        //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
+        data = new() { secPerBeat = 60 / songBpm };
     }
 
     private void Start()
     {
         //Record the time when the music starts
-        dspSongTime = (float)AudioSettings.dspTime;
+        data.dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        musicSource.Play();
+        m_musicSource.Play();
     }
+
+
 
     // Update is called once per frame
     private void Update()
     {
         //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime);
+        data.songPosition = (float)(AudioSettings.dspTime - data.dspSongTime);
 
         //determine how many beats since the song started
-        songPositionInBeats = songPosition / secPerBeat;
+        data.songPositionInBeats = data.songPosition / data.secPerBeat;
 
-        if ((int)(songPositionInBeats - 0.1f) != songPositionInBeatInt)
+        int songPosition = (int)data.songPositionInBeats;
+
+        if ((int)(data.songPositionInBeats + preBeatTime) != m_beatTracker)
         {
-            songPositionInBeatInt = (int)songPositionInBeats;
+            //Trigger Early beat for animations
+            m_beatTracker = songPosition + 1;
+            OnBeatBefore.Invoke(m_beatTracker);
+            OnBeforeBeat.Invoke(m_beatTracker);
+        }
+        else if (songPosition != songPositionInBeatInt)
+        {
+            //Trigger On Beat timing for Enemy
+            songPositionInBeatInt = songPosition;
+            OnBeatCurrent.Invoke(songPositionInBeatInt);
             OnBeat.Invoke(songPositionInBeatInt);
         }
     }

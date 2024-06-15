@@ -59,7 +59,7 @@ public class BeatTracker : MonoBehaviour
 
     public BeatType CheckBeat()
     {
-        float position = Conductor.Instance.songPositionInBeats - Conductor.Instance.songPositionInBeatInt;
+        float position = Conductor.Instance.BeatFrac;
 
         if (IsWithinTolerance(m_beatPerfect, position) != BeatType.Miss)
         {

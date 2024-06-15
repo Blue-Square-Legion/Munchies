@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManagerUI : MonoBehaviour
 {
     [SerializeField] private EventSO.EventChannelSO m_onScore;
     [SerializeField] private TMPro.TMP_Text m_text;

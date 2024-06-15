@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace EventSO
 {
-    interface IEventSO
+    internal interface IEventSO
     {
         public void Invoke();
         public void AddEventListener(Action Handler);
         public void RemoveEventListener(Action Handler);
     }
 
-    [CreateAssetMenu(fileName ="Event", menuName ="Event/Void")]
+    [CreateAssetMenu(fileName = "Event", menuName = "Event/Void")]
     public class EventChannelSO : ScriptableObject, IEventSO
     {
         public Action EventChannel;

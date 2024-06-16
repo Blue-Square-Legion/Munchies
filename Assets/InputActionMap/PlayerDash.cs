@@ -69,6 +69,12 @@ public class PlayerDash : MonoBehaviour
         }
     }
 
+    public void Dash(Vector3 direction)
+    {
+        m_direction = direction;
+        m_timeout.Start();
+    }
+
     private void HandleDash()
     {
         Vector2 val = m_movement.Player.Move.ReadValue<Vector2>() * m_speed;

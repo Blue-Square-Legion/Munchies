@@ -1,47 +1,47 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using Util;
-using static UnityEngine.GraphicsBuffer;
 
 public class DashAttack : BaseAttackComponent
 {
-    [SerializeField] private float m_speed = 40;
+    [SerializeField] private string m_tag = "Player";
+    private Transform m_target;
+
+    protected override void Init()
+    {
+        m_target = GameObject.FindGameObjectWithTag(m_tag).transform;
+    }
 
     public override void Attack(BaseCombat Attacker, Vector3 offset)
     {
         HandleDash();
     }
 
+    //overrid to access collision data. Maybe should provide to OnHit?
     protected override void OnCollisionEnter(Collision collision)
     {
-        base.OnCollisionEnter(collision);
-
-        if (!collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag(m_tag))
         {
             return;
         }
 
         TryDamage(collision.gameObject);
+
         var dash = collision.gameObject.GetComponent<PlayerDash>();
-        dash.Dash(-collision.impulse);
+        dash.Dash(-collision.impulse);  //Add fake knockback
     }
 
     private void HandleDash()
     {
-        GameObject go = GameObject.FindGameObjectWithTag("Player");
-
-        if (go == null)
+        if (m_target == null)
         {
             return;
         }
 
-        Vector3 target = go.transform.position - transform.position;
+        //Rotate to target
+        Vector3 target = m_target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(target, Vector3.up);
 
+        //Dash to target
         rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(transform.forward * m_speed, ForceMode.Impulse);
+        rigidbody.AddForce(transform.forward * data.speed, ForceMode.Impulse);
     }
 }

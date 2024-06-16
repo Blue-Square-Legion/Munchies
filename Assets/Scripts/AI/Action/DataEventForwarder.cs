@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class DataEventForwarder : BaseSpawnData
 {
-    [SerializeField] private UnityEvent<BaseCombat> OnTrigger;
+    [SerializeField] private UnityEvent<BaseCombat> m_onTrigger;
 
     public override void Trigger(BaseCombat baseCombat)
     {
-        OnTrigger.Invoke(baseCombat);
+        m_onTrigger.Invoke(baseCombat);
     }
 
 }

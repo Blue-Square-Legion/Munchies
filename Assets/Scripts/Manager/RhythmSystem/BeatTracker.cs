@@ -71,11 +71,9 @@ public class BeatTracker : MonoBehaviour
         {
             case BeatType.Late:
                 OnNormal.Invoke();
-                //OnLate.Invoke(); 
                 return BeatType.Normal;
             case BeatType.Early:
                 OnNormal.Invoke();
-                //OnEarly.Invoke();
                 return BeatType.Normal;
             default:
                 return HandleMiss(position);

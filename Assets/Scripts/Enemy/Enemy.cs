@@ -9,7 +9,18 @@ public class Enemy : BaseCombat
     [SerializeField] private IntEventChannel m_onBeat;
     [SerializeField] private List<EnemySubDecider> m_enemyDeciders = new();
 
+    public NavMeshAgent Agent;
     private EnemySubDecider m_currentDecider;
+
+
+    private void Awake()
+    {
+        if (Agent == null)
+        {
+            Agent = GetComponent<NavMeshAgent>();
+        }
+    }
+
 
     private void OnEnable()
     {
@@ -23,7 +34,7 @@ public class Enemy : BaseCombat
 
     public void Evaluate(int frame)
     {
-        if (m_currentDecider == null || (!m_currentDecider.ShouldComplete && !m_currentDecider.Evaluate(frame)))
+        if (m_currentDecider == null || !EvaluateCurrent(frame))
         {
             //Get new Action
             m_currentDecider?.Reset();
@@ -50,5 +61,10 @@ public class Enemy : BaseCombat
     private void DefaultLogic()
     {
         //TODO
+    }
+
+    private bool EvaluateCurrent(int frame)
+    {
+        return m_currentDecider.ShouldComplete || m_currentDecider.Evaluate(frame);
     }
 }

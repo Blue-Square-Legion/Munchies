@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_beatNormal:
     before: 0.15
-    after: 0.1
+    after: 0.15
   m_beatPerfect:
     before: 0.02
     after: 0.01

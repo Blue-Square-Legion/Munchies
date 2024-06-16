@@ -43,23 +43,9 @@ public class BeatTracker : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        float BeatPerSec = Conductor.Instance.songBpm / 60f;
-
-        m_beatNormal.before *= BeatPerSec;
-        m_beatNormal.after *= BeatPerSec;
-
-        m_beatPerfect.before *= BeatPerSec;
-        m_beatPerfect.after *= BeatPerSec;
-
-        m_beatWarn.before *= BeatPerSec;
-        m_beatWarn.after *= BeatPerSec;
-    }
-
     public BeatType CheckBeat()
     {
-        float position = Conductor.Instance.BeatFrac;
+        float position = Conductor.Instance.BeatFracSec;
 
         if (IsWithinTolerance(m_beatPerfect, position) != BeatType.Miss)
         {
@@ -71,10 +57,10 @@ public class BeatTracker : MonoBehaviour
         {
             case BeatType.Late:
                 OnNormal.Invoke();
-                return BeatType.Normal;
+                return BeatType.Late;
             case BeatType.Early:
                 OnNormal.Invoke();
-                return BeatType.Normal;
+                return BeatType.Early;
             default:
                 return HandleMiss(position);
         }

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e2c4f2a4b47be40b55fec9dcba69df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_time: 0.2
+  m_time: 0.3
   m_targetScale: {x: 1.5, y: 1.5, z: 1.5}
   m_curve: {fileID: 11400000, guid: e4d46908bedabac4ab688a0069f19e16, type: 2}
   m_onBeforeBeat: {fileID: 11400000, guid: c3f50e1e858fc6e4bb55b111adbbf742, type: 2}

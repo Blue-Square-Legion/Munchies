@@ -41,7 +41,9 @@ public class Conductor : MonoBehaviour
     public float songPositionInBeats => data.songPositionInBeats;
 
     private AudioSource m_musicSource;
-    private int m_beatTracker = 0;
+    private int m_beforeBeatTracker = 0;
+
+    public float BeatFracSec { get; private set; }
 
     private void Awake()
     {
@@ -75,19 +77,13 @@ public class Conductor : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //determine how many seconds since the song started
-        data.songPosition = (float)(AudioSettings.dspTime - data.dspSongTime);
-
-        //determine how many beats since the song started
-        data.songPositionInBeats = data.songPosition / data.secPerBeat;
-
         int songPosition = (int)data.songPositionInBeats;
 
-        if ((int)(data.songPositionInBeats + preBeatTime) != m_beatTracker)
+        if ((int)(data.songPositionInBeats + preBeatTime) != m_beforeBeatTracker)
         {
             //Trigger Early beat for animations
-            m_beatTracker = songPosition + 1;
-            OnBeatBefore.Invoke(m_beatTracker);
+            m_beforeBeatTracker = songPosition + 1;
+            OnBeatBefore.Invoke(m_beforeBeatTracker);
         }
         else if (songPosition != songPositionInBeatInt)
         {
@@ -95,5 +91,17 @@ public class Conductor : MonoBehaviour
             songPositionInBeatInt = songPosition;
             OnBeatCurrent.Invoke(songPositionInBeatInt);
         }
+    }
+
+    private void OnAudioFilterRead(float[] _, int channels)
+    {
+        //determine how many seconds since the song started
+        data.songPosition = (float)(AudioSettings.dspTime - data.dspSongTime);
+
+        //determine how many beats since the song started
+        data.songPositionInBeats = data.songPosition / data.secPerBeat;
+
+        //determine how time difference after beat
+        BeatFracSec = data.songPosition % data.secPerBeat;
     }
 }

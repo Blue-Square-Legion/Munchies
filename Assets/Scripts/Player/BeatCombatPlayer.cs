@@ -50,16 +50,22 @@ public class BeatCombatPlayer : CombatPlayer
                 return;
             case BeatType.Perfect:
                 TriggerCritAttack();
+                m_completedFrame = Conductor.Instance.songPositionInBeatInt;
                 break;
-            case BeatType.Normal:
+            case BeatType.Early:
                 TriggerNormalAttack();
+                m_completedFrame = Conductor.Instance.songPositionInBeatInt;
+                break;
+            case BeatType.Late:
+                TriggerNormalAttack();
+                m_completedFrame = Conductor.Instance.songPositionInBeatInt - 1;
                 break;
             case BeatType.Miss:
                 m_completedFrame = Conductor.Instance.songPositionInBeatInt + 1;
                 break;
         }
 
-        m_completedFrame = Conductor.Instance.songPositionInBeatInt + 1;
+
     }
 
     private void TriggerNormalAttack()

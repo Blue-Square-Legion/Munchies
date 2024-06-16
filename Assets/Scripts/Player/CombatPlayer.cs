@@ -14,6 +14,7 @@ public class CombatPlayer : BaseCombat
 
     public float forwardOffset = 2;
 
+    protected bool IsShootingDisabled => IsMouseOverUI() || Time.timeScale == 0;
     protected void Awake()
     {
         m_inputActions = new();
@@ -35,7 +36,7 @@ public class CombatPlayer : BaseCombat
 
     protected virtual void Fire(InputAction.CallbackContext obj)
     {
-        if (IsMouseOverUI())
+        if (IsShootingDisabled)
         {
             return;
         }
@@ -47,7 +48,6 @@ public class CombatPlayer : BaseCombat
     {
         return EventSystem.current?.IsPointerOverGameObject() ?? false;
     }
-
 
     //Rotate player to mouse
     protected virtual void FixedUpdate()

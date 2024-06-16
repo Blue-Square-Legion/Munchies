@@ -239,7 +239,22 @@ MonoBehaviour:
   forwardOffset: 1
   m_critAttack: {fileID: 5036484554761186899, guid: 39e06dbbdd1d51049b5e3bec3596a7d4,
     type: 3}
-  m_failedFrame: 0
+  m_completedFrame: 0
+  m_frameAlreadyCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 96c9123dc1866654a88fe702b08bf80d, type: 2}
+        m_TargetAssemblyTypeName: EventSO.EventChannelSO, Assembly-CSharp
+        m_MethodName: Invoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &776137579417125528
 MonoBehaviour:
   m_ObjectHideFlags: 0

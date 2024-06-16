@@ -20,7 +20,9 @@ public struct BeatLeniency
 public class BeatCombatPlayer : CombatPlayer
 {
     [SerializeField] private BaseAttackComponent m_critAttack;
-    [SerializeField] private int m_failedFrame;
+    [SerializeField] private int m_completedFrame;
+
+    public UnityEvent m_frameAlreadyCompleted;
 
     private float m_baseDamage;
 
@@ -31,18 +33,21 @@ public class BeatCombatPlayer : CombatPlayer
 
     protected override void Fire(InputAction.CallbackContext obj)
     {
-        if (IsMouseOverUI())
+        if (IsShootingDisabled)
         {
             return;
         }
 
-        if (m_failedFrame == Conductor.Instance.songPositionInBeatInt)
+        if (m_completedFrame == Conductor.Instance.songPositionInBeatInt)
         {
+            m_frameAlreadyCompleted.Invoke();
             return;
         }
 
         switch (BeatTracker.Instance.CheckBeat())
         {
+            case BeatType.Warn:
+                return;
             case BeatType.Perfect:
                 TriggerCritAttack();
                 break;
@@ -50,9 +55,11 @@ public class BeatCombatPlayer : CombatPlayer
                 TriggerNormalAttack();
                 break;
             case BeatType.Miss:
-                m_failedFrame = Conductor.Instance.songPositionInBeatInt + 1;
+                m_completedFrame = Conductor.Instance.songPositionInBeatInt + 1;
                 break;
         }
+
+        m_completedFrame = Conductor.Instance.songPositionInBeatInt + 1;
     }
 
     private void TriggerNormalAttack()

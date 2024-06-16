@@ -98,20 +98,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_beatNormal:
-    before: 0.2
+    before: 0.15
     after: 0.1
   m_beatPerfect:
     before: 0.02
-    after: 0.02
+    after: 0.01
   m_beatWarn:
     before: 0
-    after: 0.3
+    after: 0.25
   OnPerfect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7dcb09df2f233294ebf09c0038ce4c19, type: 2}
+        m_TargetAssemblyTypeName: EventSO.GenericEventChannelSO`1[[System.Int32,
+          mscorlib
+        m_MethodName: Invoke
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNormal:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7dcb09df2f233294ebf09c0038ce4c19, type: 2}
+        m_TargetAssemblyTypeName: EventSO.GenericEventChannelSO`1[[System.Int32,
+          mscorlib
+        m_MethodName: Invoke
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnWarn:
     m_PersistentCalls:
       m_Calls:

@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-7848710474116812935
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: ba44501b6dbf28244b0db57f770bab2d
+  m_EffectName: Attenuation
+  m_MixLevel: b073c0c33b1752241b3c60729ac34189
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-3869579167267842467
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BeatTrack
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: fba0dbdf1934d1a488cc392a3a567f82
+  m_Children: []
+  m_Volume: bd96cf9fefaaaf74ca80689fd78474d6
+  m_Pitch: 6c15c87fbca4ec64890d78ff029fb0df
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -7848710474116812935}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-2052548826870162189
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -37,6 +70,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 09def5e68585088409a9d08c2fe53d01
     name: BGMusicVol
+  - guid: bd96cf9fefaaaf74ca80689fd78474d6
+    name: BeatTrackVol
   - guid: dbfd76cd3a1d90b4c923df6354acfe08
     name: MasterVol
   - guid: f61fd9994b47dcc48a5531b51b68758f
@@ -46,6 +81,7 @@ AudioMixerController:
     - a12fd27ffdd97ef4e925e989163e73ec
     - 71e45259759191b4f9f5e5068b01a213
     - a40a780be805fc847bc218ed48b507c6
+    - fba0dbdf1934d1a488cc392a3a567f82
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -61,6 +97,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -2052548826870162189}
   - {fileID: 3651806851337602540}
+  - {fileID: -3869579167267842467}
   m_Volume: dbfd76cd3a1d90b4c923df6354acfe08
   m_Pitch: b78fb49e29a01994488670df727db101
   m_Send: 00000000000000000000000000000000

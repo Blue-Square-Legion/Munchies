@@ -6,11 +6,9 @@ using Util;
 public class Spawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [SerializeField] protected GameObject prefab;
+    [SerializeField] protected EnemyScaler EnemyScaler;
     [SerializeField] protected float m_spawnTime = 1f;
     [SerializeField] protected int m_maxSpawns = 5;
-
-    protected int m_spawnCount = 0;
 
     protected Interval m_cooldown;
 
@@ -27,8 +25,7 @@ public class Spawner : MonoBehaviour
 
     public virtual GameObject Spawn()
     {
-        m_spawnCount++;
-        return Instantiate(prefab, transform.position, transform.rotation, transform);
+        return EnemyScaler.Spawn(transform.position, transform);
     }
 
     protected void TrySpawn()

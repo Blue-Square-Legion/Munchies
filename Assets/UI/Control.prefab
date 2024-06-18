@@ -239,7 +239,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1952608118345888837}
+        m_TargetAssemblyTypeName: VolumeControl, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2138304325063217043
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music
+  m_text: Master
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a3f62fd3724af248853f63449bf91c9, type: 2}
   m_sharedMaterial: {fileID: 7474629930690200332, guid: 6a3f62fd3724af248853f63449bf91c9,
@@ -385,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5609156939312802801}
   - component: {fileID: 5098318611762597073}
+  - component: {fileID: 1952608118345888837}
   m_Layer: 5
   m_Name: Control
   m_TagString: Untagged
@@ -439,6 +452,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1952608118345888837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963381131083453927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbf609f29280f144902e26112023378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioMixer: {fileID: 24100000, guid: ef91bbcec34c4954d8f7eca125d1bbf3, type: 2}
+  m_refName: Master
+  m_defaultVolume: 0.7
 --- !u!1 &6679748468203557844
 GameObject:
   m_ObjectHideFlags: 0

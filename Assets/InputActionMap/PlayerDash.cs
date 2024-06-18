@@ -60,10 +60,13 @@ public class PlayerDash : MonoBehaviour
 
     private void OnSprintPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        switch (BeatTracker.Instance.CheckBeat())
+        BeatType type = BeatTracker.Instance.CheckBeat();
+        switch (type)
         {
             case BeatType.Perfect:
             case BeatType.Normal:
+            case BeatType.Late:
+            case BeatType.Early:
                 HandleDash();
                 break;
         }
@@ -81,8 +84,6 @@ public class PlayerDash : MonoBehaviour
 
         m_direction.x = val.x;
         m_direction.z = val.y;
-
-        print($"Dash:{m_direction}");
 
         m_characterController.detectCollisions = false;
         m_timeout.Start();

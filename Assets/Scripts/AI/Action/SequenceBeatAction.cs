@@ -9,6 +9,7 @@ public class SequenceBeatAction : BaseBeatAction
 
     private int m_endFrame = 0, m_lastFrame = 0, m_count = 0;
     private Status m_status = Status.Unset;
+    private BaseSpawnData m_current;
 
     public override Status Action(Enemy enemy, int frame)
     {
@@ -20,7 +21,10 @@ public class SequenceBeatAction : BaseBeatAction
         }
 
         m_lastFrame = frame;
-        m_list[m_count++]?.Trigger(enemy);
+
+        m_current?.CleanUp();
+        m_current = m_list[m_count++];
+        m_current?.Trigger(enemy);
 
         if (m_count >= m_list.Count)
         {
@@ -32,6 +36,8 @@ public class SequenceBeatAction : BaseBeatAction
     }
     public override void Reset()
     {
+        m_current?.CleanUp();
+        m_current = null;
         m_status = Status.Unset;
     }
 
@@ -39,6 +45,7 @@ public class SequenceBeatAction : BaseBeatAction
     {
         m_status = Status.Running;
         m_count = 0;
+        m_current = null;
     }
 
     private void EndSequence(int frame)

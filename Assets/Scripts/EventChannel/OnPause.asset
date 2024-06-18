@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a6de02cc62c1b498166d592970a85f, type: 3}
-  m_Name: PauseManager
+  m_Script: {fileID: 11500000, guid: bd26335dc26dba04686b0feaf10bd868, type: 3}
+  m_Name: OnPause
   m_EditorClassIdentifier: 
-  OnPause: {fileID: 11400000, guid: 61a59ccf5b8a6844d844f9d3f7d5698b, type: 2}

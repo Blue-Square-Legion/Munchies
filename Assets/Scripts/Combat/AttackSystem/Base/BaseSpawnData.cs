@@ -21,13 +21,23 @@ public abstract class BaseSpawnData : MonoBehaviour
     }
 
     public virtual void Trigger(BaseCombat baseCombat) { }
+    public virtual void CleanUp() { OnEnd(); }
     protected virtual void DestroySelf() { OnEnd(); Destroy(gameObject); }
     protected virtual void Init() { }
     protected virtual void OnHit(GameObject target) { }
     protected virtual void OnStart() { }
     protected virtual void OnEnd() { }
     protected virtual void OnTick(float deltaTime) { }
+    public static bool TryDamage(GameObject gameObject, float damage)
+    {
+        if (gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.Damage(damage);
+            return true;
+        }
 
+        return false;
+    }
     public static GameObject Spawn(GameObject target, AttackData data, Vector3 position, Quaternion rotation)
     {
         GameObject go = Spawn(target, out BaseSpawnData component, position, rotation);

@@ -26,12 +26,12 @@ public class GrowScript : MonoBehaviour
 
     private void OnEnable()
     {
-        m_onBeforeBeat.AddEventListener(StartEffect);
+        m_onBeforeBeat?.AddEventListener(StartEffect);
     }
 
     private void OnDisable()
     {
-        m_onBeforeBeat.RemoveEventListener(StartEffect);
+        m_onBeforeBeat?.RemoveEventListener(StartEffect);
     }
 
     private void HandleTickPercent(float percent)
@@ -48,7 +48,6 @@ public class GrowScript : MonoBehaviour
     {
         if (m_timer.isRunning)
         {
-            Debug.LogWarning($"{name} Grow - Already Started");
             return;
         }
 

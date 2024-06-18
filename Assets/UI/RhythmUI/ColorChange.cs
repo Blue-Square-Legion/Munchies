@@ -13,14 +13,18 @@ public class ColorChange : MonoBehaviour
     [SerializeField] private Color m_targetColor;
     [SerializeField] private AnimationCurveSO m_curve;
 
-    private MeshRenderer m_render;
+    [SerializeField] private MeshRenderer m_render;
     private Color m_defaultColor;
 
     private TimeoutTickPercent m_timer;
 
     private void Awake()
     {
-        m_render = GetComponent<MeshRenderer>();
+        if (m_render == null)
+        {
+            m_render = GetComponent<MeshRenderer>();
+        }
+
         m_defaultColor = m_render.material.color;
 
         m_timer = new(m_time);

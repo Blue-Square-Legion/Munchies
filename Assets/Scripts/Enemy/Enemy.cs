@@ -10,14 +10,32 @@ public class Enemy : BaseCombat
     [SerializeField] private List<EnemySubDecider> m_enemyDeciders = new();
 
     public NavMeshAgent Agent;
+    public Rigidbody Rigidbody;
+    public Collider Collider;
+    public Damageable Damageable;
     private EnemySubDecider m_currentDecider;
-
+    private bool m_needsNew = true;
 
     private void Awake()
     {
         if (Agent == null)
         {
             Agent = GetComponent<NavMeshAgent>();
+        }
+
+        if (Rigidbody == null)
+        {
+            Rigidbody = GetComponent<Rigidbody>();
+        }
+
+        if (Collider == null)
+        {
+            Collider = GetComponent<Collider>();
+        }
+
+        if (Damageable == null)
+        {
+            Damageable = GetComponent<Damageable>();
         }
     }
 
@@ -32,9 +50,11 @@ public class Enemy : BaseCombat
         m_onBeat.RemoveEventListener(Evaluate);
     }
 
+
+
     public void Evaluate(int frame)
     {
-        if (m_currentDecider == null || !EvaluateCurrent(frame))
+        if (m_needsNew || !EvaluateCurrent(frame))
         {
             //Get new Action
             m_currentDecider?.Reset();
@@ -47,13 +67,14 @@ public class Enemy : BaseCombat
             }
         }
 
+        m_needsNew = false;
         switch (m_currentDecider.Trigger(this, frame))
         {
             case Status.Complete:
-                m_currentDecider = null;
+                m_needsNew = true;
                 break;
             case Status.Unset:  //On Cooldown
-                m_currentDecider = null;
+                m_needsNew = true;
                 break;
         }
     }

@@ -66,6 +66,12 @@ public class Damageable : MonoBehaviour, IDamageable
         isDamagable = true;
     }
 
+    public void SetMaxHealth(float health)
+    {
+        m_maxHP = health;
+        HP = health;
+    }
+
     public void Damage(float damage)
     {
         if (!isDamagable || isDead)

@@ -77,6 +77,15 @@ public class Conductor : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //determine how many seconds since the song started
+        data.songPosition = (float)(AudioSettings.dspTime - data.dspSongTime);
+
+        //determine how many beats since the song started
+        data.songPositionInBeats = data.songPosition / data.secPerBeat;
+
+        //determine how time difference after beat
+        BeatFracSec = data.songPosition % data.secPerBeat;
+
         int songPosition = (int)data.songPositionInBeats;
 
         if ((int)(data.songPositionInBeats + preBeatTime) != m_beforeBeatTracker)
@@ -91,17 +100,5 @@ public class Conductor : MonoBehaviour
             songPositionInBeatInt = songPosition;
             OnBeatCurrent.Invoke(songPositionInBeatInt);
         }
-    }
-
-    private void OnAudioFilterRead(float[] _, int channels)
-    {
-        //determine how many seconds since the song started
-        data.songPosition = (float)(AudioSettings.dspTime - data.dspSongTime);
-
-        //determine how many beats since the song started
-        data.songPositionInBeats = data.songPosition / data.secPerBeat;
-
-        //determine how time difference after beat
-        BeatFracSec = data.songPosition % data.secPerBeat;
     }
 }

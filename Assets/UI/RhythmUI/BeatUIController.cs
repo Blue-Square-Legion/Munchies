@@ -25,9 +25,7 @@ public class BeatUIController : MonoBehaviour
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
 
-        BeatCombatPlayer combat = go.GetComponent<BeatCombatPlayer>();
-
-        combat.OnFailedFrame.AddListener(HandleFailedFrame);
+        BeatTracker.Instance.OnMissFrame.AddListener(HandleFailedFrame);
 
         //delay for Race condition for parent width setting.
         Invoke("SetUpWidth", 0.1f);

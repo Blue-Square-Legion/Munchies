@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public abstract class BaseSpawnData<T> : MonoBehaviour
+public abstract class BaseSpawnData : MonoBehaviour
 {
-    [SerializeField] protected T data;
+    [SerializeField] protected AttackData data;
 
     protected virtual void Awake()
     {
@@ -20,16 +20,27 @@ public abstract class BaseSpawnData<T> : MonoBehaviour
         OnTick(Time.deltaTime);
     }
 
+    public virtual void Trigger(BaseCombat baseCombat) { }
+    public virtual void CleanUp() { OnEnd(); }
     protected virtual void DestroySelf() { OnEnd(); Destroy(gameObject); }
     protected virtual void Init() { }
     protected virtual void OnHit(GameObject target) { }
     protected virtual void OnStart() { }
     protected virtual void OnEnd() { }
     protected virtual void OnTick(float deltaTime) { }
-
-    public static GameObject Spawn(GameObject target, T data, Vector3 position, Quaternion rotation)
+    public static bool TryDamage(GameObject gameObject, float damage)
     {
-        GameObject go = Spawn(target, out BaseSpawnData<T> component, position, rotation);
+        if (gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.Damage(damage);
+            return true;
+        }
+
+        return false;
+    }
+    public static GameObject Spawn(GameObject target, AttackData data, Vector3 position, Quaternion rotation)
+    {
+        GameObject go = Spawn(target, out BaseSpawnData component, position, rotation);
 
         if (component) { component.data = data; component?.OnStart(); }
 
@@ -39,7 +50,7 @@ public abstract class BaseSpawnData<T> : MonoBehaviour
 
     public static GameObject Spawn(GameObject target, Vector3 position, Quaternion rotation)
     {
-        GameObject go = Spawn(target, out BaseSpawnData<T> component, position, rotation);
+        GameObject go = Spawn(target, out BaseSpawnData component, position, rotation);
         component?.OnStart();
         return go;
     }

@@ -1,3 +1,4 @@
+using AnimationSO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,20 +8,24 @@ using Util;
 
 public class ColorChange : MonoBehaviour
 {
-    [SerializeField] private float m_time = 0.1f;
+    [SerializeField] private float m_time = 0.2f;
 
     [SerializeField] private Color m_targetColor;
-    [SerializeField] private AnimationCurve m_curve;
+    [SerializeField] private AnimationCurveSO m_curve;
 
-    private Image m_image;
+    [SerializeField] private MeshRenderer m_render;
     private Color m_defaultColor;
 
-    private TimeoutTick m_timer;
+    private TimeoutTickPercent m_timer;
 
     private void Awake()
     {
-        m_image = GetComponent<Image>();
-        m_defaultColor = m_image.color;
+        if (m_render == null)
+        {
+            m_render = GetComponent<MeshRenderer>();
+        }
+
+        m_defaultColor = m_render.material.color;
 
         m_timer = new(m_time);
         m_timer.isRunning = false;
@@ -30,14 +35,13 @@ public class ColorChange : MonoBehaviour
 
     private void HandleTickPercent(float percent)
     {
-        m_image.color = Color.Lerp(m_defaultColor, m_targetColor, m_curve.Evaluate(percent));
+        m_render.material.color = Color.Lerp(m_defaultColor, m_targetColor, m_curve.Evaluate(percent));
     }
 
-    public void Start()
+    public void Trigger()
     {
         if (m_timer.isRunning)
         {
-            print($"{name} - Already Started");
             return;
         }
 

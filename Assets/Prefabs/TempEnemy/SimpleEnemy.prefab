@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 917912204075065768}
   - component: {fileID: 1127688387912655185}
   - component: {fileID: 1918244635940576042}
+  - component: {fileID: 7494423162415116}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -144,6 +145,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7494423162415116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177016508980931594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e2c4f2a4b47be40b55fec9dcba69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_time: 0.2
+  m_targetScale: {x: 40, y: 40, z: 40}
+  m_curve: {fileID: 11400000, guid: e4d46908bedabac4ab688a0069f19e16, type: 2}
+  m_onBeforeBeat: {fileID: 11400000, guid: c3f50e1e858fc6e4bb55b111adbbf742, type: 2}
 --- !u!1001 &6898653324094599342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,8 +181,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}
-      propertyPath: m_Center.y
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: m_Size.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208417842580884441, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}
@@ -232,21 +264,26 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8121707533027282274, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: m_AutoBraking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8121707533027282274, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5640813370807178821, guid: 8f40fab231d6c3c4d9430a7b1e255833, type: 3}
     - {fileID: 5214631445183576250, guid: 8f40fab231d6c3c4d9430a7b1e255833, type: 3}
-    - {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4297676850029432419, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6548086753958312254}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 586409484870188876, guid: 8f40fab231d6c3c4d9430a7b1e255833,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 472673396475755495}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f40fab231d6c3c4d9430a7b1e255833, type: 3}
 --- !u!195 &3389778258153012684 stripped
 NavMeshAgent:
@@ -254,35 +291,6 @@ NavMeshAgent:
     type: 3}
   m_PrefabInstance: {fileID: 6898653324094599342}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6313950968616751074 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 586409484870188876, guid: 8f40fab231d6c3c4d9430a7b1e255833,
-    type: 3}
-  m_PrefabInstance: {fileID: 6898653324094599342}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &472673396475755495
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6313950968616751074}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!224 &7212685188853497549 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4297676850029432419, guid: 8f40fab231d6c3c4d9430a7b1e255833,

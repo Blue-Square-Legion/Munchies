@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_controller.Move(m_movement * Time.deltaTime);
+        m_controller.Move(m_movement * Time.fixedDeltaTime);
         HandleGravity();
         HandleJump();
     }
@@ -102,15 +102,6 @@ public class PlayerMovement : MonoBehaviour
         m_jumpCount++;
     }
 
-    private void OnJump(InputAction.CallbackContext context)
-    {
-        m_isJumpPressed = context.ReadValueAsButton();
-
-        if (!m_isJumpPressed)
-        {
-            m_jumpCount++;
-        }
-    }
     private void HandleJump()
     {
         if (m_controller.isGrounded && !m_isJumpPressed)

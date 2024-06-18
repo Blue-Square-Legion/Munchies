@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public abstract class BaseAttackComponent : BaseSpawnData<AttackData>, IAttack
+public abstract class BaseAttackComponent : BaseSpawnData, IAttack
 {
     protected new Rigidbody rigidbody;
     protected new Collider collider;
@@ -19,6 +19,11 @@ public abstract class BaseAttackComponent : BaseSpawnData<AttackData>, IAttack
     protected virtual void OnCollisionEnter(Collision collision)
     {
         OnHit(collision.gameObject);
+    }
+
+    public override void Trigger(BaseCombat baseCombat)
+    {
+        Attack(baseCombat, Vector3.zero);
     }
 
     public virtual void Attack(BaseCombat Attacker, Vector3 offset)

@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 48ae9e2954cb34146b471f8fc2211ea7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,6 +110,8 @@ MonoBehaviour:
   canMultiTrigger: 0
   offsetPosition: {x: 0, y: 0, z: 0}
   wasHit: 0
+  m_onHitNoise: {fileID: 8300000, guid: 1b4e3c69c452d6245a610ff0289001bd, type: 3}
+  m_playSFX: {fileID: 11400000, guid: f77b4db6ad6f7bc45be8295d128c60b6, type: 2}
 --- !u!135 &1216835211522228433
 SphereCollider:
   m_ObjectHideFlags: 0

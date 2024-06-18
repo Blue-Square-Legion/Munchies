@@ -1,3 +1,4 @@
+using EventSO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class SplitProjectileSpawner : BaseProjectile
     public Vector3 offsetPosition;
 
     public bool wasHit = false;
+
+    [SerializeField] private AudioClip m_onHitNoise;
+    [SerializeField] private AudioEventChannel m_playSFX;
 
     protected override void OnHit(GameObject target)
     {
@@ -26,6 +30,7 @@ public class SplitProjectileSpawner : BaseProjectile
             SpawnDamageArea(item);
         }
 
+        m_playSFX.Invoke(m_onHitNoise);
         wasHit = true;
         DestroySelf();
     }

@@ -11,7 +11,12 @@ public class VolumeControl : MonoBehaviour
     [SerializeField] private string m_refName = "MasterVol";
     [SerializeField] private float m_defaultVolume = 0.8f;
 
-    private void Awake()
+    private void Start()
+    {
+        Init();
+    }
+
+    public void Init()
     {
         float value = PlayerPrefs.GetFloat(m_refName, m_defaultVolume);
         SetVolume(value);

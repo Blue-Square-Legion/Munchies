@@ -31,6 +31,7 @@ public class ColorChange : MonoBehaviour
         m_timer.isRunning = false;
 
         m_timer.OnTick = HandleTickPercent;
+        m_timer.OnComplete = () => m_render.material.color = m_defaultColor;
     }
 
     private void HandleTickPercent(float percent)

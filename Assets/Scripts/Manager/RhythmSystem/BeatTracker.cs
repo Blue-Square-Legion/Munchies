@@ -45,7 +45,7 @@ public class BeatTracker : MonoBehaviour
 
     public BeatType CheckBeat()
     {
-        float position = Conductor.Instance.BeatFracSec;
+        double position = Conductor.Instance.BeatFracSec;
 
         if (IsWithinTolerance(m_beatPerfect, position) != BeatType.Miss)
         {
@@ -66,7 +66,7 @@ public class BeatTracker : MonoBehaviour
         }
     }
 
-    private BeatType HandleMiss(float position)
+    private BeatType HandleMiss(double position)
     {
         if (IsWithinTolerance(m_beatWarn, position) == BeatType.Miss)
         {
@@ -82,14 +82,14 @@ public class BeatTracker : MonoBehaviour
     }
 
 
-    private BeatType IsWithinTolerance(BeatLeniency beatLeniency, float position)
+    private BeatType IsWithinTolerance(BeatLeniency beatLeniency, double position)
     {
         if (position < beatLeniency.after)
         {
             return BeatType.Late;
         }
 
-        if (1 - position < beatLeniency.before)
+        if (Conductor.Instance.data.secPerBeat - position < beatLeniency.before)
         {
             return BeatType.Early;
         }

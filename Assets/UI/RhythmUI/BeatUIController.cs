@@ -59,7 +59,7 @@ public class BeatUIController : MonoBehaviour
 
     private void Update()
     {
-        float alpha = (BeatsShownInAdvance - (beatOfThisNote - Conductor.Instance.songPositionInBeats)) / BeatsShownInAdvance;
+        float alpha = (float)((BeatsShownInAdvance - (beatOfThisNote - Conductor.Instance.songPositionInBeats)) / BeatsShownInAdvance);
         if (alpha <= 1)
         {
             position.x = Mathf.Lerp(m_start, m_end, alpha);

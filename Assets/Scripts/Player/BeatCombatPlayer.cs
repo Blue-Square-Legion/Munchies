@@ -33,7 +33,7 @@ public class BeatCombatPlayer : CombatPlayer
     {
         m_baseDamage = attackData.damage;
 
-        float cooldownTime = Mathf.Max(Conductor.Instance.data.secPerBeat * 0.25f, 0.2f);
+        float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * 0.25f, 0.2f);
 
         print(cooldownTime);
 

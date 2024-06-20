@@ -25,9 +25,9 @@ public class UpdateMusicUI : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerMusicManager.Instance.OnBPMChange.AddListener(SetBPM);
-        PlayerMusicManager.Instance.OnMusicChanged.AddListener(HandleAudioChanged);
-        PlayerMusicManager.Instance.OnMusicAdded.AddListener(HandleAudioAdded);
+        PlayerMusicManager.OnBPMChange += SetBPM;
+        PlayerMusicManager.OnMusicChanged += HandleAudioChanged;
+        PlayerMusicManager.OnMusicAdded += HandleAudioAdded;
 
         m_bpm.onValueChanged.AddListener(HandleBPMValueChange);
         Dropdown.onValueChanged.AddListener(HandleMusicDropDown);
@@ -36,9 +36,9 @@ public class UpdateMusicUI : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerMusicManager.Instance.OnBPMChange.RemoveListener(SetBPM);
-        PlayerMusicManager.Instance.OnMusicChanged.RemoveListener(HandleAudioChanged);
-        PlayerMusicManager.Instance.OnMusicAdded.RemoveListener(HandleAudioAdded);
+        PlayerMusicManager.OnBPMChange += SetBPM;
+        PlayerMusicManager.OnMusicChanged += HandleAudioChanged;
+        PlayerMusicManager.OnMusicAdded += HandleAudioAdded;
 
         m_bpm.onValueChanged.RemoveListener(HandleBPMValueChange);
         Dropdown.onValueChanged.RemoveListener(HandleMusicDropDown);

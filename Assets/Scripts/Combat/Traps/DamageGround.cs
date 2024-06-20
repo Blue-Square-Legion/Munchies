@@ -23,7 +23,7 @@ public class DamageGround : MonoBehaviour
     private Interval m_interval;
 
 
-    private int m_count = 0;
+    [SerializeField] private int m_count = 0;
 
     private void Awake()
     {
@@ -75,7 +75,6 @@ public class DamageGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if (other.TryGetComponent(out IDamageable target))
         {
             m_damageable?.Add(other, target);

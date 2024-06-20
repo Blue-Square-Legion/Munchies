@@ -23,8 +23,8 @@ public class PlayerMusicManager : MonoBehaviour
     public MusicDataFormat DefaultMusic;
     public MusicDataFormat CurrentMusic;
 
-    public UnityEvent<MusicDataFormat> OnMusicChanged, OnMusicAdded;
-    public UnityEvent<float> OnBPMChange;
+    public static Action<MusicDataFormat> OnMusicChanged, OnMusicAdded;
+    public static Action<float> OnBPMChange;
 
     private void Awake()
     {
@@ -61,11 +61,11 @@ public class PlayerMusicManager : MonoBehaviour
         {
             MusicDataFormat data = new() { clip = clip, BPM = 120 };
             audioClips.Add(clip.name, data);
-            OnMusicAdded.Invoke(data);
+            OnMusicAdded?.Invoke(data);
         }
 
         CurrentMusic = audioClips[clip.name];
-        OnMusicChanged.Invoke(CurrentMusic);
+        OnMusicChanged?.Invoke(CurrentMusic);
     }
 
     public void SetBPM(string bpm)

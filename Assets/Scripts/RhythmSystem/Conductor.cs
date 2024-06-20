@@ -63,12 +63,12 @@ public class Conductor : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerMusicManager.Instance.OnMusicChanged.AddListener(HandleMusicChange);
+        PlayerMusicManager.OnMusicChanged += HandleMusicChange;
     }
 
     private void OnDisable()
     {
-        PlayerMusicManager.Instance.OnMusicChanged.RemoveListener(HandleMusicChange);
+        PlayerMusicManager.OnMusicChanged -= HandleMusicChange;
     }
 
     private void HandleMusicChange(MusicDataFormat data)
@@ -81,10 +81,7 @@ public class Conductor : MonoBehaviour
 
     private void Start()
     {
-        Setup();
-
-        //Start the music
-        m_musicSource.Play();
+        HandleMusicChange(PlayerMusicManager.Instance.CurrentMusic);
     }
 
     private void Setup()

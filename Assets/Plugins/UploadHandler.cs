@@ -21,7 +21,7 @@ public struct AudioDataJSON
 public class UploadHandler : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void ImageUploaderCaptureClick();
+    private static extern void ImageUploaderCaptureClick(string name);
 
     public UnityEvent<AudioClip> OnAudioLoaded;
 
@@ -66,9 +66,9 @@ public class UploadHandler : MonoBehaviour
 
     private void FileSelected(string json)
     {
-        print(json);
+        Debug.Log(json);
         AudioDataJSON data = JsonUtility.FromJson<AudioDataJSON>(json);
-        print(data);
+        Debug.Log(data);
         StartCoroutine(LoadTexture(data));
     }
 
@@ -89,7 +89,7 @@ public class UploadHandler : MonoBehaviour
             StartCoroutine(LoadTexture(data));
         }
 #else
-        ImageUploaderCaptureClick ();
+        ImageUploaderCaptureClick (gameObject.name);
 #endif
     }
 

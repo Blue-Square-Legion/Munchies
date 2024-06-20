@@ -18,7 +18,6 @@ public class AudioBeatPlayer : MonoBehaviour
         int position = Conductor.Instance.songPositionInBeatInt;
 
         double time = Conductor.Instance.data.songPosition - position * Conductor.Instance.data.secPerBeat;
-        print($"pos: {position} frame:{frame} time:{Conductor.Instance.data.secPerBeat - time}");
         m_source.PlayScheduled(AudioSettings.dspTime + time);
     }
 

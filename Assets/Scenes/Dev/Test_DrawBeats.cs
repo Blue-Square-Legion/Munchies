@@ -46,14 +46,19 @@ namespace Test
             m_clearColors = Enumerable.Repeat(Color.black, Height).ToArray();
             m_image.overrideSprite = Sprite.Create(m_texture, new Rect(0f, 0f, m_texture.width, m_texture.height), new Vector2(0.5f, 0.5f));
             Invoke("StartDrawing", 0.5f);
-
-            m_image.overrideSprite = Sprite.Create(m_texture, new Rect(0f, 0f, m_texture.width, m_texture.height), new Vector2(0.5f, 0.5f));
         }
 
         private void OnValidate()
         {
             m_position = 0;
             m_clearColors = Enumerable.Repeat(Color.black, Height).ToArray();
+        }
+
+        public void Restart()
+        {
+            SetFillColor(m_texture, Color.black);
+            m_position = 0;
+            enabled = true;
         }
 
         private void StartDrawing()

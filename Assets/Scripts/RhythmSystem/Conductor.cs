@@ -10,10 +10,10 @@ public struct ConductorData
     //The number of seconds for each song beat
     public double secPerBeat;
 
-    //Current song position, in seconds
+    //CurrentMusic song position, in seconds
     public double songPosition;
 
-    //Current song position, in beats
+    //CurrentMusic song position, in beats
     public double songPositionInBeats;
 
     //How many seconds have passed since the song started
@@ -59,20 +59,38 @@ public class Conductor : MonoBehaviour
 
         //Load the AudioSource attached to the Conductor GameObject
         m_musicSource = GetComponent<AudioSource>();
+    }
 
-        data = new() { secPerBeat = 60 / songBpm };
+    private void OnEnable()
+    {
+        PlayerMusicManager.Instance.OnMusicChanged.AddListener(HandleMusicChange);
+    }
+
+    private void OnDisable()
+    {
+        PlayerMusicManager.Instance.OnMusicChanged.RemoveListener(HandleMusicChange);
+    }
+
+    private void HandleMusicChange(MusicDataFormat data)
+    {
+        songBpm = data.BPM;
+        Setup();
+        m_musicSource.clip = data.clip;
+        m_musicSource.Play();
     }
 
     private void Start()
     {
-        //Record the time when the music starts
-        data.dspSongTime = (float)AudioSettings.dspTime;
+        Setup();
 
         //Start the music
         m_musicSource.Play();
     }
 
-
+    private void Setup()
+    {
+        data = new() { secPerBeat = 60 / songBpm, dspSongTime = AudioSettings.dspTime };
+    }
 
     // Update is called once per frame
     private void Update()

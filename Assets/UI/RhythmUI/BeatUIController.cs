@@ -18,6 +18,8 @@ public class BeatUIController : MonoBehaviour
     public int BeatsShownInAdvance = 4;
     public int beatOfThisNote = 4;
 
+    private int m_beatOfThisNote = 4;
+
     private float m_start, m_end;
     public Vector3 position = Vector3.zero;
 
@@ -27,8 +29,15 @@ public class BeatUIController : MonoBehaviour
 
         BeatTracker.Instance.OnMissFrame.AddListener(HandleFailedFrame);
 
+        m_beatOfThisNote = beatOfThisNote;
+
         //delay for Race condition for parent width setting.
         Invoke("SetUpWidth", 0.1f);
+    }
+
+    public void Reset()
+    {
+        m_beatOfThisNote = beatOfThisNote;
     }
 
     private void SetUpWidth()
@@ -51,7 +60,7 @@ public class BeatUIController : MonoBehaviour
 
     private void HandleFailedFrame(int beatFrame)
     {
-        if (beatOfThisNote == beatFrame)
+        if (m_beatOfThisNote == beatFrame)
         {
             m_image.color = Color.red;
         }
@@ -59,7 +68,7 @@ public class BeatUIController : MonoBehaviour
 
     private void Update()
     {
-        float alpha = (float)((BeatsShownInAdvance - (beatOfThisNote - Conductor.Instance.songPositionInBeats)) / BeatsShownInAdvance);
+        float alpha = (float)((BeatsShownInAdvance - (m_beatOfThisNote - Conductor.Instance.songPositionInBeats)) / BeatsShownInAdvance);
         if (alpha <= 1)
         {
             position.x = Mathf.Lerp(m_start, m_end, alpha);
@@ -75,7 +84,7 @@ public class BeatUIController : MonoBehaviour
 
     private void ResetUI()
     {
-        beatOfThisNote += BeatsShownInAdvance;
+        m_beatOfThisNote += BeatsShownInAdvance;
         m_image.color = Color.white;
     }
 }

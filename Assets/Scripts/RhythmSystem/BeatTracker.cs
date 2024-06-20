@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,12 +26,12 @@ public class BeatTracker : MonoBehaviour
 
     // Perfect > Normal > Warn > Miss
     [Header("Beat Events")]
-    public UnityEvent OnPerfect;
-    public UnityEvent OnNormal;
+    public UnityEvent<int> OnPerfect;
+    public UnityEvent<int> OnNormal;
     //public UnityEvent OnEarly, OnLate;
 
     [Tooltip("Warn Player miss, but not failure")]
-    public UnityEvent OnWarn;
+    public UnityEvent<int> OnWarn;
 
     [Tooltip("On Player Failure")]
     public UnityEvent<int> OnMissFrame;
@@ -46,37 +47,39 @@ public class BeatTracker : MonoBehaviour
     public BeatType CheckBeat()
     {
         double position = Conductor.Instance.BeatFracSec;
+        int frame = Conductor.Instance.songPositionInBeatInt;
 
-        if (IsWithinTolerance(m_beatPerfect, position) != BeatType.Miss)
+        //Perfect Handler
+        switch (IsWithinTolerance(m_beatPerfect, position))
         {
-            OnPerfect.Invoke();
-            return BeatType.Perfect;
+            case BeatType.Early:
+                OnPerfect.Invoke(frame + 1);
+                return BeatType.Perfect;
+            case BeatType.Late:
+                OnPerfect.Invoke(frame);
+                return BeatType.Perfect;
         }
 
+        //Normal Handler
         switch (IsWithinTolerance(m_beatNormal, position))
         {
-            case BeatType.Late:
-                OnNormal.Invoke();
-                return BeatType.Late;
             case BeatType.Early:
-                OnNormal.Invoke();
+                OnNormal.Invoke(frame + 1);
                 return BeatType.Early;
-            default:
-                return HandleMiss(position);
+            case BeatType.Late:
+                OnNormal.Invoke(frame);
+                return BeatType.Late;
         }
-    }
 
-    private BeatType HandleMiss(double position)
-    {
+        //Handle Warn & Miss
         if (IsWithinTolerance(m_beatWarn, position) == BeatType.Miss)
         {
-            int failedFrame = Conductor.Instance.songPositionInBeatInt + 1;
-            OnMissFrame.Invoke(failedFrame);
+            OnMissFrame.Invoke(frame + 1);
             return BeatType.Miss;
         }
         else
         {
-            OnWarn.Invoke();
+            OnWarn.Invoke(frame);
             return BeatType.Warn;
         }
     }

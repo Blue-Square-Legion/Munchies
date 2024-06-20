@@ -85,6 +85,9 @@ public class Conductor : MonoBehaviour
 
         int songPosition = (int)data.songPositionInBeats;
 
+        //determine how time difference after beat
+        BeatFracSec = data.songPosition - (data.secPerBeat * songPositionInBeatInt);
+
         if ((int)(data.songPositionInBeats + preBeatTime) != m_beforeBeatTracker)
         {
             //Trigger Early beat for animations
@@ -98,7 +101,6 @@ public class Conductor : MonoBehaviour
             OnBeatCurrent.Invoke(songPositionInBeatInt);
         }
 
-        //determine how time difference after beat
-        BeatFracSec = data.songPosition - (data.secPerBeat * songPositionInBeatInt);
+
     }
 }

@@ -94,12 +94,25 @@ MonoBehaviour:
   texture: {fileID: 0}
   Width: 200
   Height: 100
-  Perfect: {r: 0, g: 0, b: 1, a: 1}
-  Early: {r: 1, g: 0, b: 0.9456892, a: 1}
-  Late: {r: 0, g: 1, b: 0, a: 1}
-  Normal: {r: 0, g: 1, b: 1, a: 1}
-  Warn: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  Miss: {r: 1, g: 1, b: 1, a: 1}
+  RunOnce: 1
+  m_perfect:
+    color: {r: 0, g: 0, b: 1, a: 1}
+    length: 10
+  m_early:
+    color: {r: 0, g: 1, b: 0, a: 1}
+    length: 8
+  m_late:
+    color: {r: 0, g: 1, b: 0, a: 1}
+    length: 8
+  m_normal:
+    color: {r: 0, g: 1, b: 0, a: 1}
+    length: 8
+  m_warn:
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    length: 6
+  m_miss:
+    color: {r: 1, g: 1, b: 1, a: 1}
+    length: 4
 --- !u!114 &8653459545685937532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +130,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9221692391139244537}
-        m_TargetAssemblyTypeName: Test_DrawBeats, Assembly-CSharp
+        m_TargetAssemblyTypeName: Test.Test_DrawBeats, Assembly-CSharp
         m_MethodName: DrawBeat
         m_Mode: 1
         m_Arguments:

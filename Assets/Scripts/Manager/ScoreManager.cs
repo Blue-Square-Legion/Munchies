@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     [Header("Multiplier Decay")]
     [SerializeField] private float m_multiplerDecayRatePerBeat = 0.2f;
     [SerializeField] private bool m_useMultiplerDecayRate = true;
-    [SerializeField] private bool m_decayOnSuccess = false;
+    //[SerializeField] private bool m_decayOnSuccess = false;
 
     public int Multiplier = 1;
     public float MultiplierCharge = 0;
@@ -42,13 +42,10 @@ public class ScoreManager : MonoBehaviour
         m_onScoreChange.Invoke(Score);
 
         ResetMultiplier();
-    }
 
-
-    private void OnValidate()
-    {
         m_multiplierMaxCharge = m_maxMultiplier * m_multiplierRequiredCharge - 1;
     }
+
     private void OnEnable()
     {
         m_addMutliplier.AddEventListener(AddMultiplierCharge);
@@ -82,6 +79,7 @@ public class ScoreManager : MonoBehaviour
     public void AddMultiplierCharge(int value)
     {
         MultiplierCharge += value;
+
         if (MultiplierCharge > m_multiplierMaxCharge)
         {
             MultiplierCharge = m_multiplierMaxCharge;
@@ -118,6 +116,11 @@ public class ScoreManager : MonoBehaviour
     private void NotifyChargePercent()
     {
         float chargePercent = (MultiplierCharge % m_multiplierRequiredCharge) / m_multiplierRequiredCharge;
+        /*
+                //TODO: fix ugly code to get percent of multiplier since above code breaks in WebGL
+                //Think WebGL act odd with float % float
+                float chargeModRemain = MultiplierCharge - (m_multiplierRequiredCharge * (Multiplier - 1));
+                float chargePercent = chargeModRemain / m_multiplierRequiredCharge;*/
         m_onMultiplierChargePercentChange.Invoke(chargePercent);
     }
 }

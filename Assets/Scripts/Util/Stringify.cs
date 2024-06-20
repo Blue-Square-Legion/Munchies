@@ -18,6 +18,7 @@ namespace Util
         }
 
         public void Convert(int i) { Trigger(i.ToString()); }
+        public void Convert(float i) { Trigger(i.ToString()); }
 
         private void Trigger(string text)
         {

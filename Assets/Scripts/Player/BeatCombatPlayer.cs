@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Util;
 
 
 [Serializable]
@@ -20,7 +21,9 @@ public struct BeatLeniency
 public class BeatCombatPlayer : CombatPlayer
 {
     [SerializeField] private BaseAttackComponent m_critAttack;
-    [SerializeField] private int m_completedFrame;
+
+    private Timeout m_timeout;
+    private bool m_canShoot = true;
 
     public UnityEvent m_frameAlreadyCompleted;
 
@@ -29,6 +32,20 @@ public class BeatCombatPlayer : CombatPlayer
     private void Start()
     {
         m_baseDamage = attackData.damage;
+
+        float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * 0.25f, 0.2f);
+
+        print(cooldownTime);
+
+        m_timeout = new(cooldownTime);
+        m_timeout.isRunning = false;
+        m_timeout.OnStart = () => m_canShoot = false;
+        m_timeout.OnComplete = () => m_canShoot = true;
+    }
+
+    private void Update()
+    {
+        m_timeout.Tick(Time.deltaTime);
     }
 
     protected override void Fire(InputAction.CallbackContext obj)
@@ -38,7 +55,7 @@ public class BeatCombatPlayer : CombatPlayer
             return;
         }
 
-        if (m_completedFrame == Conductor.Instance.songPositionInBeatInt)
+        if (!m_canShoot)
         {
             m_frameAlreadyCompleted.Invoke();
             return;
@@ -50,18 +67,14 @@ public class BeatCombatPlayer : CombatPlayer
                 return;
             case BeatType.Perfect:
                 TriggerCritAttack();
-                m_completedFrame = Conductor.Instance.songPositionInBeatInt;
                 break;
             case BeatType.Early:
                 TriggerNormalAttack();
-                m_completedFrame = Conductor.Instance.songPositionInBeatInt;
                 break;
             case BeatType.Late:
                 TriggerNormalAttack();
-                m_completedFrame = Conductor.Instance.songPositionInBeatInt - 1;
                 break;
             case BeatType.Miss:
-                m_completedFrame = Conductor.Instance.songPositionInBeatInt + 1;
                 break;
         }
 

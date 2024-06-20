@@ -8,16 +8,16 @@ using UnityEngine.Events;
 public struct ConductorData
 {
     //The number of seconds for each song beat
-    public float secPerBeat;
+    public double secPerBeat;
 
     //Current song position, in seconds
-    public float songPosition;
+    public double songPosition;
 
     //Current song position, in beats
-    public float songPositionInBeats;
+    public double songPositionInBeats;
 
     //How many seconds have passed since the song started
-    public float dspSongTime;
+    public double dspSongTime;
 }
 
 public class Conductor : MonoBehaviour
@@ -37,13 +37,13 @@ public class Conductor : MonoBehaviour
     public UnityEvent<int> OnBeatCurrent;
 
     public int songPositionInBeatInt { get; private set; }
-    public float BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
-    public float songPositionInBeats => data.songPositionInBeats;
+    public double BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
+    public double songPositionInBeats => data.songPositionInBeats;
 
     private AudioSource m_musicSource;
     private int m_beforeBeatTracker = 0;
 
-    public float BeatFracSec { get; private set; }
+    public double BeatFracSec { get; private set; }
 
     private void Awake()
     {
@@ -83,10 +83,10 @@ public class Conductor : MonoBehaviour
         //determine how many beats since the song started
         data.songPositionInBeats = data.songPosition / data.secPerBeat;
 
-        //determine how time difference after beat
-        BeatFracSec = data.songPosition % data.secPerBeat;
-
         int songPosition = (int)data.songPositionInBeats;
+
+        //determine how time difference after beat
+        BeatFracSec = data.songPosition - (data.secPerBeat * songPositionInBeatInt);
 
         if ((int)(data.songPositionInBeats + preBeatTime) != m_beforeBeatTracker)
         {
@@ -100,5 +100,7 @@ public class Conductor : MonoBehaviour
             songPositionInBeatInt = songPosition;
             OnBeatCurrent.Invoke(songPositionInBeatInt);
         }
+
+
     }
 }

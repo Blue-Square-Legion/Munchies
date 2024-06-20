@@ -12,8 +12,6 @@ public class SettingAutoRun : MonoBehaviour
     private void Init()
     {
         VolumeControl[] settings = GetComponentsInChildren<VolumeControl>(true);
-
-        print(settings.Length);
         foreach (var item in settings)
         {
             item.Init();

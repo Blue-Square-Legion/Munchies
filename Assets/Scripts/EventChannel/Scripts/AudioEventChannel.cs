@@ -8,6 +8,7 @@ namespace EventSO
     [CreateAssetMenu(fileName = "audio", menuName = "Event/audio")]
     public class AudioEventChannel : GenericEventChannelSO<AudioClip>
     {
+
     }
 }
 

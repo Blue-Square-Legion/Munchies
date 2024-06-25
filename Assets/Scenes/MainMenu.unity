@@ -1995,11 +1995,21 @@ PrefabInstance:
       propertyPath: m_beatList.Array.data[7]
       value: 
       objectReference: {fileID: 1875140862}
+    - target: {fileID: 1378112796908695043, guid: cc44d4df9cfb3fa448365bfc87f9b824,
+        type: 3}
+      propertyPath: m_Name
+      value: Upload
+      objectReference: {fileID: 0}
     - target: {fileID: 1524103940166486960, guid: cc44d4df9cfb3fa448365bfc87f9b824,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1748451660}
+    - target: {fileID: 2577308830659847860, guid: cc44d4df9cfb3fa448365bfc87f9b824,
+        type: 3}
+      propertyPath: m_Name
+      value: UploadContainer
+      objectReference: {fileID: 0}
     - target: {fileID: 2925108135458188815, guid: cc44d4df9cfb3fa448365bfc87f9b824,
         type: 3}
       propertyPath: m_AnchorMax.y

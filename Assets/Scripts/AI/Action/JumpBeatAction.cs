@@ -14,7 +14,7 @@ public class JumpBeatAction : BaseSpawnData
     public LayerMask mask;
     public float radius = 2f;
 
-    public UnityEvent OnJump, OnLand;
+    public UnityEvent OnJump, OnLand, OnLandEarly;
 
     private TimeoutTickPercent m_timer;
 
@@ -62,6 +62,13 @@ public class JumpBeatAction : BaseSpawnData
         m_timer.Tick(deltaTime);
     }
 
+    public override void EarlyTrigger(BaseCombat baseCombat)
+    {
+        if (m_isJumping)
+        {
+            OnLandEarly.Invoke();
+        }
+    }
     public override void Trigger(BaseCombat baseCombat)
     {
         m_isJumping = !m_isJumping;

@@ -229,7 +229,7 @@ MonoBehaviour:
     damage: 1
     speed: 5
     lifeTime: 1
-    SpawnLimit: 1
+    SpawnLimit: 0
     NumProjectile: 3
     Angle: 45
   GroundLayer:
@@ -237,9 +237,22 @@ MonoBehaviour:
     m_Bits: 8
   m_mainCamera: {fileID: 0}
   forwardOffset: 1
+  m_missAttack:
+    damage: 1
+    speed: 5
+    lifeTime: 1
+    SpawnLimit: 0
+    NumProjectile: 1
+    Angle: 0
+  m_perfectAttack:
+    damage: 2
+    speed: 5
+    lifeTime: 1
+    SpawnLimit: 1
+    NumProjectile: 5
+    Angle: 45
   m_critAttack: {fileID: 5036484554761186899, guid: 39e06dbbdd1d51049b5e3bec3596a7d4,
     type: 3}
-  m_completedFrame: 0
   m_frameAlreadyCompleted:
     m_PersistentCalls:
       m_Calls:

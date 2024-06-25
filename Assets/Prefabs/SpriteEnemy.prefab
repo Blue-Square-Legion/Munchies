@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7708429804610341783}
   - component: {fileID: 8315284827655012269}
   - component: {fileID: 4659163366995698279}
+  - component: {fileID: 6133092489645350511}
   m_Layer: 0
   m_Name: Spirte
   m_TagString: Untagged
@@ -115,6 +116,22 @@ MonoBehaviour:
   m_targetColor: {r: 1, g: 0, b: 0, a: 1}
   m_curve: {fileID: 11400000, guid: d7afb7f6b128c7c4b9081b619d0ab019, type: 2}
   m_render: {fileID: 8315284827655012269}
+--- !u!114 &6133092489645350511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708487590133008231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e2c4f2a4b47be40b55fec9dcba69df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_time: 0.2
+  m_targetScale: {x: 1, y: 1, z: 1}
+  m_curve: {fileID: 11400000, guid: e4d46908bedabac4ab688a0069f19e16, type: 2}
+  m_onBeforeBeat: {fileID: 0}
 --- !u!1 &8787193196795968923
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +212,7 @@ MonoBehaviour:
     NumProjectile: 0
     Angle: 0
   m_onBeat: {fileID: 11400000, guid: e2bb18a2f19bbee45aaf0cffe2c813f3, type: 2}
+  m_onBeatEarly: {fileID: 11400000, guid: c3f50e1e858fc6e4bb55b111adbbf742, type: 2}
   m_enemyDeciders: []
   Agent: {fileID: 766759310933252909}
   Rigidbody: {fileID: 8041357376087805785}

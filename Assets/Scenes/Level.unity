@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4acdbff324a9e24d9c8d38cfca84245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_manager: {fileID: 11400000, guid: 16b75597a8e7bc246aea698fae2e17f4, type: 2}
   m_speed:
     MinValue: 3.5
     MaxValue: 6
@@ -1344,11 +1345,15 @@ MonoBehaviour:
     NumProjectile: 0
     Angle: 0
   m_onBeat: {fileID: 11400000, guid: e2bb18a2f19bbee45aaf0cffe2c813f3, type: 2}
+  m_onBeatEarly: {fileID: 0}
   m_enemyDeciders:
   - name: Attack Range
     Sensor: {fileID: 893303094}
     Attack: {fileID: 809645657}
     ShouldComplete: 1
+  OnDefault:
+    m_PersistentCalls:
+      m_Calls: []
   Agent: {fileID: 809645652}
   Rigidbody: {fileID: 0}
   Collider: {fileID: 0}
@@ -1643,6 +1648,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1097530659}
   - {fileID: 998727569}
   - {fileID: 1941506803}
   m_Father: {fileID: 0}
@@ -1941,6 +1947,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &1097530659 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1459069944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1296879093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2098,7 +2110,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 933184620}
     m_Modifications:
     - target: {fileID: 2864398714005368284, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
@@ -2128,17 +2140,17 @@ PrefabInstance:
     - target: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
@@ -2383,6 +2395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4acdbff324a9e24d9c8d38cfca84245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_manager: {fileID: 11400000, guid: 16b75597a8e7bc246aea698fae2e17f4, type: 2}
   m_speed:
     MinValue: 3.5
     MaxValue: 5
@@ -4106,4 +4119,3 @@ SceneRoots:
   - {fileID: 978956801}
   - {fileID: 1296879093}
   - {fileID: 164703100}
-  - {fileID: 1459069944}

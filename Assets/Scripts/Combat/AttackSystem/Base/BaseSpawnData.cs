@@ -20,6 +20,7 @@ public abstract class BaseSpawnData : MonoBehaviour
         OnTick(Time.deltaTime);
     }
 
+    public virtual void EarlyTrigger(BaseCombat baseCombat) { }
     public virtual void Trigger(BaseCombat baseCombat) { }
     public virtual void CleanUp() { OnEnd(); }
     protected virtual void DestroySelf() { OnEnd(); Destroy(gameObject); }

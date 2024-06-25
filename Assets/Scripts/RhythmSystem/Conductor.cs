@@ -35,6 +35,7 @@ public class Conductor : MonoBehaviour
 
     public UnityEvent<int> OnBeatBefore;
     public UnityEvent<int> OnBeatCurrent;
+    public UnityEvent<float> OnBPMChange;
 
     public int songPositionInBeatInt { get; private set; }
     public double BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
@@ -59,6 +60,8 @@ public class Conductor : MonoBehaviour
 
         //Load the AudioSource attached to the Conductor GameObject
         m_musicSource = GetComponent<AudioSource>();
+
+        OnBPMChange.Invoke(songBpm);
     }
 
     private void OnEnable()
@@ -77,6 +80,8 @@ public class Conductor : MonoBehaviour
         Setup();
         m_musicSource.clip = data.clip;
         m_musicSource.Play();
+
+        OnBPMChange.Invoke(songBpm);
     }
 
     private void Start()

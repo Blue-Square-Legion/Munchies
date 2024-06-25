@@ -27,8 +27,7 @@ const ImageUploaderPlugin = {
           name: file.name,
         };
 
-  
-        SendMessage(name, 'FileSelected', JSON.stringify(data));
+        SendMessage(GAMEOBJECT_NAME, 'FileSelected', JSON.stringify(data));
       }
       document.body.appendChild(fileInput);
     }

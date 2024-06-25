@@ -11,6 +11,12 @@ public class SequenceBeatAction : BaseBeatAction
     private Status m_status = Status.Unset;
     private BaseSpawnData m_current;
 
+    public override void EarlyTrigger(Enemy enemy, int frame)
+    {
+        if (m_count < m_list.Count)
+            m_list[m_count]?.EarlyTrigger(enemy);
+    }
+
     public override Status Action(Enemy enemy, int frame)
     {
         if (IsOnCooldown(frame)) { return Status.Unset; }

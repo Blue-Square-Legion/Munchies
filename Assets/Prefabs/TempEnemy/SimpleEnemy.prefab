@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1127688387912655185}
   - component: {fileID: 1918244635940576042}
   - component: {fileID: 7494423162415116}
+  - component: {fileID: 8822739600765550263}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -161,6 +162,22 @@ MonoBehaviour:
   m_targetScale: {x: 40, y: 40, z: 40}
   m_curve: {fileID: 11400000, guid: e4d46908bedabac4ab688a0069f19e16, type: 2}
   m_onBeforeBeat: {fileID: 11400000, guid: c3f50e1e858fc6e4bb55b111adbbf742, type: 2}
+--- !u!114 &8822739600765550263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177016508980931594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9e1c87caee3fd4e856469b945dd1a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_time: 0.3
+  m_targetColor: {r: 1, g: 0, b: 0, a: 1}
+  m_curve: {fileID: 11400000, guid: d7afb7f6b128c7c4b9081b619d0ab019, type: 2}
+  m_render: {fileID: 917912204075065768}
 --- !u!1001 &6898653324094599342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,6 +201,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8822739600765550263}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Trigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ColorChange, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763389842271895363, guid: 8f40fab231d6c3c4d9430a7b1e255833,
+        type: 3}
+      propertyPath: OnDamaged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4897293215289398910, guid: 8f40fab231d6c3c4d9430a7b1e255833,
         type: 3}

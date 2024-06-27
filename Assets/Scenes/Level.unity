@@ -388,7 +388,7 @@ MonoBehaviour:
     EndScale: 20
     Enable: 1
   m_prefab:
-  - {fileID: 6313950968616751074, guid: 2a4a77ca4d3713745820ffa529f2395a, type: 3}
+  - {fileID: 5431748113012945774, guid: 4b611f1ea69e4ae4c8759944d8f9a5bb, type: 3}
 --- !u!1 &139730250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2132,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4166053263137610541, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
+        type: 3}
+      propertyPath: OnBPMChanged
+      value: 
+      objectReference: {fileID: 11400000, guid: 14a2d5e936be85f4086790dfa6e5f18b,
+        type: 2}
     - target: {fileID: 4880107734052444683, guid: 0ff7b5377d060714ea4cfdc02eb1341c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3489,6 +3495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
         type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
       propertyPath: OnBeatBefore.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3504,6 +3515,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
         type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 14a2d5e936be85f4086790dfa6e5f18b,
+        type: 2}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
       propertyPath: OnBeatCurrent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
       objectReference: {fileID: 0}
@@ -3517,6 +3534,16 @@ PrefabInstance:
       propertyPath: OnBeatCurrent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1012077037}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Invoke
+      objectReference: {fileID: 0}
     - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
         type: 3}
       propertyPath: OnBeatBefore.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -3539,6 +3566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
         type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: EventSO.GenericEventChannelSO`1[[System.Single, mscorlib
+      objectReference: {fileID: 0}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
       propertyPath: OnBeatBefore.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Util.Stringify, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -3552,6 +3584,11 @@ PrefabInstance:
       propertyPath: OnBeatCurrent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 6ebbaddd0661c32468876aaf8f284625, type: 3}
+    - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
+        type: 3}
+      propertyPath: OnBPMChange.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: -450704429086754642, guid: d10e9347319c8294ca8f27713cba71be,
         type: 3}
       propertyPath: OnBeatBefore.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

@@ -2,7 +2,10 @@ using EventSO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using Util;
 
 public class DamageGround : MonoBehaviour
@@ -24,6 +27,8 @@ public class DamageGround : MonoBehaviour
 
 
     [SerializeField] private int m_count = 0;
+
+    public UnityEvent OnActive, OnPassive;
 
     private void Awake()
     {
@@ -54,6 +59,10 @@ public class DamageGround : MonoBehaviour
 
     private void ToggleDamageArea(bool isOn)
     {
+        if (isOn)
+            OnActive.Invoke();
+        else
+            OnPassive.Invoke();
         m_sprite.color = isOn ? m_damageColor : m_disabledColor;
     }
 

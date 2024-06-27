@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 7560401357004507868}
   - component: {fileID: 8017039604155176631}
   - component: {fileID: 6668740065059130159}
+  - component: {fileID: 6069098293115440239}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -295,6 +296,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_dashTime: 0.15
   m_speed: 40
+  m_perfectMulti: 1.5
+  m_normalMulti: 1
+  m_missMulti: 0.5
+  m_CooldownPercent: 0.8
+  m_minCooldown: 0.2
 --- !u!114 &6156757530923319495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +482,7 @@ MonoBehaviour:
   m_enableJump: 0
   m_maxJumpHeight: 4
   m_maxJumpTime: 0.75
+  m_statsManagerSO: {fileID: 11400000, guid: 16b75597a8e7bc246aea698fae2e17f4, type: 2}
 --- !u!143 &8017039604155176631
 CharacterController:
   m_ObjectHideFlags: 0
@@ -518,6 +525,46 @@ MonoBehaviour:
   m_targetColor: {r: 0.9098039, g: 0.3137255, b: 0.12156863, a: 1}
   m_curve: {fileID: 11400000, guid: d7afb7f6b128c7c4b9081b619d0ab019, type: 2}
   m_render: {fileID: 5134230862614573285}
+--- !u!114 &6069098293115440239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9174719023214600006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bede15dd9b00dc489e446b29e816adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_eventChannel: {fileID: 11400000, guid: 14a2d5e936be85f4086790dfa6e5f18b, type: 2}
+  OnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4237121792267225045}
+        m_TargetAssemblyTypeName: PlayerDash, Assembly-CSharp
+        m_MethodName: HandleBPMChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6156757530923319495}
+        m_TargetAssemblyTypeName: BeatCombatPlayer, Assembly-CSharp
+        m_MethodName: HandleBPMChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4298404593665865149
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,6 +58,7 @@ public class PlayerDash : MonoBehaviour
 
     public void HandleBPMChange()
     {
+        if (m_cooldownTimeout == null) return;
         float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * m_CooldownPercent, m_minCooldown);
         m_cooldownTimeout.targetTime = cooldownTime;
     }

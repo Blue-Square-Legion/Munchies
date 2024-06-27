@@ -39,6 +39,7 @@ public class BeatCombatPlayer : CombatPlayer
 
     public void HandleBPMChange()
     {
+        if (m_timeout == null) return;
         float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * m_attackCooldownPercent, m_minAttackCooldown);
         m_timeout.targetTime = cooldownTime;
     }

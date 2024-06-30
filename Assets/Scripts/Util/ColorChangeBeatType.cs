@@ -19,12 +19,14 @@ public class ColorChangeBeatType : MonoBehaviour
 
     [SerializeField] private AnimationCurveSO m_curve;
 
-    [SerializeField] private SpriteRenderer m_render;
+    [SerializeField] private SpriteRenderer m_spriteRenderer;
+    [SerializeField] private Renderer m_render;
+    [SerializeField] private string m_materialKey = "_GlowColor";
 
     [SerializeField] private float m_displayTime = 0.3f;
     private TimeoutTickPercent m_timeout;
 
-    private Color m_defaultColor, m_targetColor;
+    private Color m_defaultSpriteColor, m_defaultRenderColor, m_targetColor;
 
     private void Awake()
     {
@@ -32,9 +34,14 @@ public class ColorChangeBeatType : MonoBehaviour
         m_timeout.isRunning = false;
 
         m_timeout.OnTick += OnTick;
-        m_timeout.OnComplete = () => m_render.color = m_defaultColor;
+        m_timeout.OnComplete = () =>
+        {
+            m_spriteRenderer.color = m_defaultRenderColor;
+            m_render.materials[1].SetColor(m_materialKey, m_defaultRenderColor);
+        };
 
-        m_defaultColor = m_render.color;
+        m_defaultRenderColor = Color.black;
+        m_defaultSpriteColor = m_spriteRenderer.color;
     }
 
     private void Update()
@@ -60,7 +67,11 @@ public class ColorChangeBeatType : MonoBehaviour
 
     private void OnTick(float percent)
     {
-        m_render.color = Color.Lerp(m_defaultColor, m_targetColor, m_curve.Evaluate(percent));
+        float val = m_curve.Evaluate(percent);
+        m_spriteRenderer.color = Color.Lerp(m_defaultSpriteColor, m_targetColor, val / 2);
+
+        Color GlowColor = Color.Lerp(m_defaultRenderColor, m_targetColor, val);
+        m_render.materials[1].SetColor(m_materialKey, GlowColor);
     }
 
     public void Perfect(int _)

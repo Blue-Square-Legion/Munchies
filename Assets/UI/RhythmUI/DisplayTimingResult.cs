@@ -1,5 +1,6 @@
 using AnimationSO;
 using EventSO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,8 @@ public class DisplayTimingResult : MonoBehaviour
 
     [SerializeField] private float m_time = 0.2f;
     [SerializeField] private AnimationCurveSO m_curve;
+
+    [SerializeField] private IntEventChannel m_perfectEvent, m_normalEvent, m_missEvent;
 
     [SerializeField]
     private Color m_perfect = Color.yellow,
@@ -29,6 +32,28 @@ public class DisplayTimingResult : MonoBehaviour
         m_timer.OnTick = HandleTickPercent;
 
         m_default = Text.color;
+    }
+
+    private void OnEnable()
+    {
+        m_perfectEvent.AddEventListener(Perfect);
+        m_normalEvent.AddEventListener(Normal);
+        m_missEvent.AddEventListener(Miss);
+    }
+
+    private void Miss(int obj)
+    {
+        StartEffect("Miss");
+    }
+
+    private void Normal(int obj)
+    {
+        StartEffect("Normal");
+    }
+
+    private void Perfect(int obj)
+    {
+        StartEffect("Perfect");
     }
 
     private void HandleTickPercent(float percent)

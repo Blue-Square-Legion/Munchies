@@ -22,6 +22,8 @@ public struct ConductorData
 
 public class Conductor : MonoBehaviour
 {
+    [SerializeField] private MusicDataEventChannel m_onMusicChanged;
+
     public static Conductor Instance;
 
     //Song beats per minute
@@ -66,16 +68,20 @@ public class Conductor : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerMusicManager.OnMusicChanged += HandleMusicChange;
+        m_onMusicChanged.AddEventListener(HandleMusicChange);
+        //PlayerMusicManager.OnMusicChanged += HandleMusicChange;
     }
 
     private void OnDisable()
     {
-        PlayerMusicManager.OnMusicChanged -= HandleMusicChange;
+        m_onMusicChanged.RemoveEventListener(HandleMusicChange);
+        //PlayerMusicManager.OnMusicChanged -= HandleMusicChange;
     }
 
     private void HandleMusicChange(MusicDataFormat data)
     {
+        print($"Music Changed: {data.Name}");
+
         songBpm = data.BPM;
         Setup();
         m_musicSource.clip = data.clip;

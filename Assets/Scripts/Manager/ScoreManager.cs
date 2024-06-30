@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static ScoreManager Instance;
 
     [Header("Multiplier")]
     [SerializeField] private float m_multiplierRequiredCharge = 10;
     [SerializeField] private int m_maxMultiplier = 4;
     [SerializeField] private float m_minMultiplierCharge = 0;
-
 
     [Header("Multiplier Decay")]
     [SerializeField] private float m_multiplerDecayRatePerBeat = 0.2f;
@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] private IntEventChannel m_onScoreChange;
+    [SerializeField] private IntEventChannel m_onHighScoreChange;
     [SerializeField] private IntEventChannel m_onMultiplierChange;
     [SerializeField] private FloatEventChannel m_onMultiplierChargePercentChange;
 
@@ -36,14 +37,32 @@ public class ScoreManager : MonoBehaviour
 
     private float m_multiplierMaxCharge;
     private readonly int m_defaultMultiplier = 1;
+    public static int Highscore = 0;
+
+    private const string HIGHSCORE = "HighScore";
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {
-        m_onScoreChange.Invoke(Score);
-
         ResetMultiplier();
 
         m_multiplierMaxCharge = m_maxMultiplier * m_multiplierRequiredCharge - 1;
+
+        Highscore = PlayerPrefs.GetInt(HIGHSCORE, 0);
+
+        m_onScoreChange.Invoke(Score);
+        m_onHighScoreChange.Invoke(Highscore);
     }
 
     private void OnEnable()
@@ -95,6 +114,13 @@ public class ScoreManager : MonoBehaviour
     {
         Score += value * Multiplier;
         m_onScoreChange.Invoke(Score);
+
+        if (Score > Highscore)
+        {
+            Highscore = Score;
+            PlayerPrefs.SetInt(HIGHSCORE, Highscore);
+            m_onHighScoreChange.Invoke(Highscore);
+        }
     }
     private void HandleDecay(int frame)
     {
@@ -123,4 +149,6 @@ public class ScoreManager : MonoBehaviour
                 float chargePercent = chargeModRemain / m_multiplierRequiredCharge;*/
         m_onMultiplierChargePercentChange.Invoke(chargePercent);
     }
+
+
 }

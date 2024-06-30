@@ -10,6 +10,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected float m_spawnTime = 1f;
     [SerializeField] protected int m_maxSpawns = 5;
 
+    [SerializeField] protected int m_enablePoint = 0;
+
     protected Interval m_cooldown;
 
     protected virtual void Awake()
@@ -30,7 +32,7 @@ public class Spawner : MonoBehaviour
 
     protected void TrySpawn()
     {
-        if (transform.childCount < m_maxSpawns)
+        if (transform.childCount < m_maxSpawns && m_enablePoint <= ScoreManager.Instance.Score)
         {
             Spawn();
         }

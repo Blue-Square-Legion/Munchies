@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: PauseManager
   m_EditorClassIdentifier: 
   OnPause: {fileID: 11400000, guid: 61a59ccf5b8a6844d844f9d3f7d5698b, type: 2}
+  OnResume: {fileID: 11400000, guid: 9a544dcd2a5e7bd4ab2c4fa382e71ae1, type: 2}

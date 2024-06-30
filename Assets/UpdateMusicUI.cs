@@ -16,11 +16,23 @@ public class UpdateMusicUI : MonoBehaviour
 
     public List<BeatUIController> m_beatList = new();
 
-    private void Awake()
+    private void Start()
     {
         var data = PlayerMusicManager.Instance.DefaultMusic;
-        Dropdown.options.Add(new() { text = data.clip.name });
-        HandleAudioChanged(data);
+
+        data.ForEach(music =>
+        {
+            Dropdown.options.Add(new() { text = music.clip.name });
+        });
+
+        HandleAudioChanged(PlayerMusicManager.Instance.CurrentMusic);
+
+        int index = Dropdown.options.FindIndex(data => data.text == PlayerMusicManager.Instance.CurrentMusic.clip.name);
+
+        print(index);
+
+        Dropdown.SetValueWithoutNotify(index);
+        Dropdown.RefreshShownValue();
     }
 
     private void OnEnable()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -450704429086754642}
   - component: {fileID: 7557656765918741744}
   - component: {fileID: -1337995320248967263}
+  - component: {fileID: 1729207027685093274}
   m_Layer: 0
   m_Name: Conductor
   m_TagString: Untagged
@@ -46,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7039d070d0d1e4497e342041f99a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songBpm: 0
-  preBeatTime: 0.1
+  m_onMusicChanged: {fileID: 11400000, guid: 06779f6667d5f0b46a295a4b0e147fa2, type: 2}
+  songBpm: 134
+  preBeatTime: 0.15
   data:
     secPerBeat: 0
     songPosition: 0
@@ -88,6 +90,19 @@ MonoBehaviour:
   OnBPMChange:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 11400000, guid: 14a2d5e936be85f4086790dfa6e5f18b, type: 2}
+        m_TargetAssemblyTypeName: EventSO.GenericEventChannelSO`1[[System.Single,
+          mscorlib
+        m_MethodName: Invoke
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 16b75597a8e7bc246aea698fae2e17f4, type: 2}
         m_TargetAssemblyTypeName: BeatStatsManagerSO, Assembly-CSharp
         m_MethodName: ChangeSpeed
@@ -308,3 +323,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1729207027685093274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6753971486913104607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1109a8cda498f4d91f49012a2ccf9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_eventChannel: {fileID: 11400000, guid: b0f059957b449ee43a8b8d7160d7139f, type: 2}
+  OnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7557656765918741744}
+        m_TargetAssemblyTypeName: BeatTracker, Assembly-CSharp
+        m_MethodName: TriggerBeat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -30,6 +30,7 @@ public class DisplayTimingResult : MonoBehaviour
         m_timer = new(m_time);
         m_timer.isRunning = false;
         m_timer.OnTick = HandleTickPercent;
+        m_timer.OnComplete = () => Text.color = m_default;
 
         m_default = Text.color;
     }

@@ -847,7 +847,7 @@ MonoBehaviour:
   m_perfectEvent: {fileID: 11400000, guid: 3a2d2940cfbe4de44923ae655afe86d5, type: 2}
   m_normalEvent: {fileID: 11400000, guid: 1064d5c24d53fe147b798408250d1fc1, type: 2}
   m_missEvent: {fileID: 11400000, guid: ea996d2a19fc7f94aae99b6e23ff233c, type: 2}
-  m_curve: {fileID: 11400000, guid: d7afb7f6b128c7c4b9081b619d0ab019, type: 2}
+  m_curve: {fileID: 11400000, guid: ac8ef1549d069f944b49e008fc07a17e, type: 2}
   m_render: {fileID: 5605457337998404446}
   m_displayTime: 0.3
 --- !u!212 &5605457337998404446 stripped

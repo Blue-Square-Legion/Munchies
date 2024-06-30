@@ -20,15 +20,15 @@ public class DamageOnContact : MonoBehaviour
         HandleDamage(collision.collider);
     }
 
-    /*    private void OnTriggerEnter(Collider other)
-        {
-            HandleDamage(other);
-        }
-        private void OnTriggerStay(Collider other)
-        {
-            HandleDamage(other);
-        }
-    */
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleDamage(other);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        HandleDamage(other);
+    }
+
     private void HandleDamage(Collider other)
     {
         if (CheckTarget(other, out IDamageable target))

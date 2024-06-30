@@ -38,4 +38,12 @@ public class MenuManager : MonoBehaviour
 
         m_playMenu.ForEach(menu => menu.SetActive(!m_pauseManagerSO.IsPaused));
     }
+
+    public void TogglePause(bool isPaused)
+    {
+        m_pauseManagerSO.ToggleNotify(isPaused);
+        m_pauseMenu.ForEach(menu => menu.SetActive(m_pauseManagerSO.IsPaused));
+
+        m_playMenu.ForEach(menu => menu.SetActive(!m_pauseManagerSO.IsPaused));
+    }
 }

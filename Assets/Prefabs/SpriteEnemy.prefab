@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1145901055651229817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 247240065796380661}
+  - component: {fileID: 2898865574661982740}
+  - component: {fileID: 7030719819169104858}
+  m_Layer: 0
+  m_Name: DamageAura
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &247240065796380661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145901055651229817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.824, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6072831136771455359}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2898865574661982740
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145901055651229817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7030719819169104858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145901055651229817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad9343dbe54ad9469d4f3a5cf187f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tag: Player
+  m_damage: 1
 --- !u!1 &1708487590133008231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +82,7 @@ GameObject:
   - component: {fileID: 4659163366995698279}
   - component: {fileID: 2071757882867216779}
   - component: {fileID: 6133092489645350511}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spirte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,8 +237,7 @@ GameObject:
   - component: {fileID: 8041357376087805785}
   - component: {fileID: 1873152732192228257}
   - component: {fileID: 7371339658635963535}
-  - component: {fileID: 5469495517734855162}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SpriteEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +258,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3271084621308549279}
+  - {fileID: 247240065796380661}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &766759310933252909
@@ -464,20 +532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tag: Player
   m_target: {fileID: 0}
---- !u!114 &5469495517734855162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8787193196795968923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad9343dbe54ad9469d4f3a5cf187f76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_tag: Player
-  m_damage: 1
 --- !u!1001 &3026087803164833688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -486,10 +540,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3271084621308549279}
     m_Modifications:
+    - target: {fileID: 1888187984224636267, guid: a83890f3435f1ef4399b33aec768c052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676731094749471601, guid: a83890f3435f1ef4399b33aec768c052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3336819146310236960, guid: a83890f3435f1ef4399b33aec768c052,
         type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3336819146310236960, guid: a83890f3435f1ef4399b33aec768c052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4504859905006422651, guid: a83890f3435f1ef4399b33aec768c052,
         type: 3}
@@ -600,6 +669,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867921347211271290, guid: a83890f3435f1ef4399b33aec768c052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980961982848139343, guid: a83890f3435f1ef4399b33aec768c052,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4185945534120982060, guid: a83890f3435f1ef4399b33aec768c052, type: 3}

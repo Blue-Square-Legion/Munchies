@@ -73,6 +73,16 @@ PrefabInstance:
       propertyPath: OnDefault.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1873152732192228257, guid: 6c5c23d71367fda41922331b0d0fbcc3,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873152732192228257, guid: 6c5c23d71367fda41922331b0d0fbcc3,
+        type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4750805506833848253, guid: 6c5c23d71367fda41922331b0d0fbcc3,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -147,6 +157,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_targetScale.z
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041357376087805785, guid: 6c5c23d71367fda41922331b0d0fbcc3,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 8315284827655012269, guid: 6c5c23d71367fda41922331b0d0fbcc3,
         type: 3}
@@ -274,7 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     damage: 3
-    speed: 10
+    speed: 15
     lifeTime: 0
     SpawnLimit: 0
     NumProjectile: 0

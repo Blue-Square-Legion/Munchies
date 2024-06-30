@@ -260,8 +260,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 4c90899fc3fd4bf4395be371be5ee213, type: 3}
   - {fileID: 2100000, guid: 7a7f6fe43ce3aa449a2b56e518fec6a1, type: 2}
+  - {fileID: 2100000, guid: c1b6d9584367e3642adfaa3e04528f98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_dashTime: 0.15
   m_speed: 40
-  m_perfectMulti: 1.5
+  m_perfectMulti: 1.25
   m_normalMulti: 1
   m_missMulti: 0.5
   m_CooldownPercent: 0.8
@@ -339,7 +339,7 @@ MonoBehaviour:
     damage: 2
     speed: 5
     lifeTime: 1
-    SpawnLimit: 1
+    SpawnLimit: 5
     NumProjectile: 5
     Angle: 45
   m_critAttack: {fileID: 5036484554761186899, guid: 39e06dbbdd1d51049b5e3bec3596a7d4,
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_hasDamageInvuln: 1
   m_damageInvulnCDTime: 0.1
   m_hasRegen: 1
-  m_regenAmount: 0.5
+  m_regenAmount: 0.2
   m_regenTime: 1
   m_destroySelf: 1
   m_destroyTime: 0
@@ -497,7 +497,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

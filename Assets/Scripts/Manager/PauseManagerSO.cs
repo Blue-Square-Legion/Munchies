@@ -32,7 +32,12 @@ public class PauseManagerSO : ScriptableObject
 
     public bool ToggleNotify()
     {
-        if (IsPaused = !IsPaused)
+        return ToggleNotify(!IsPaused);
+    }
+
+    public bool ToggleNotify(bool isPaused)
+    {
+        if (IsPaused = isPaused)
         {
             NotifyPause();
         }

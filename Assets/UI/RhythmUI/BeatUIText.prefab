@@ -150,6 +150,9 @@ MonoBehaviour:
   Text: {fileID: 5923050059620762088}
   m_time: 1
   m_curve: {fileID: 11400000, guid: e4d46908bedabac4ab688a0069f19e16, type: 2}
+  m_perfectEvent: {fileID: 11400000, guid: 3a2d2940cfbe4de44923ae655afe86d5, type: 2}
+  m_normalEvent: {fileID: 11400000, guid: 1064d5c24d53fe147b798408250d1fc1, type: 2}
+  m_missEvent: {fileID: 11400000, guid: ea996d2a19fc7f94aae99b6e23ff233c, type: 2}
   m_perfect: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_normal: {r: 0, g: 1, b: 0, a: 1}
   m_miss: {r: 0.5, g: 0.5, b: 0.5, a: 1}

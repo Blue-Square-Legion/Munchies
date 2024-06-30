@@ -1,13 +1,19 @@
 using EventSO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class Enemy : BaseCombat
 {
     [SerializeField] private IntEventChannel m_onBeat;
+    [SerializeField] private IntEventChannel m_onBeatEarly;
     [SerializeField] private List<EnemySubDecider> m_enemyDeciders = new();
+
+    public UnityEvent OnDefault;
+
 
     public NavMeshAgent Agent;
     public Rigidbody Rigidbody;
@@ -43,14 +49,21 @@ public class Enemy : BaseCombat
     private void OnEnable()
     {
         m_onBeat.AddEventListener(Evaluate);
+        m_onBeatEarly.AddEventListener(EarlyTrigger);
     }
+
 
     private void OnDisable()
     {
         m_onBeat.RemoveEventListener(Evaluate);
+        m_onBeatEarly.RemoveEventListener(EarlyTrigger);
     }
 
 
+    private void EarlyTrigger(int frame)
+    {
+        m_currentDecider?.EarlyTrigger(this, frame);
+    }
 
     public void Evaluate(int frame)
     {
@@ -58,30 +71,35 @@ public class Enemy : BaseCombat
         {
             //Get new Action
             m_currentDecider?.Reset();
-            m_currentDecider = m_enemyDeciders.Find(decider => decider.Evaluate(frame));
+            m_currentDecider = m_enemyDeciders.Find(decider => decider.Evaluate(frame)
+                && decider?.Trigger(this, frame) != Status.Unset);
 
             if (m_currentDecider == null)
             {
                 DefaultLogic();
                 return;
             }
-        }
 
-        m_needsNew = false;
-        switch (m_currentDecider.Trigger(this, frame))
+            m_needsNew = false;
+        }
+        else
         {
-            case Status.Complete:
-                m_needsNew = true;
-                break;
-            case Status.Unset:  //On Cooldown
-                m_needsNew = true;
-                break;
+
+            switch (m_currentDecider.Trigger(this, frame))
+            {
+                case Status.Complete:
+                    m_needsNew = true;
+                    break;
+                case Status.Unset:  //On Cooldown
+                    m_needsNew = true;
+                    break;
+            }
         }
     }
 
     private void DefaultLogic()
     {
-        //TODO
+        OnDefault.Invoke();
     }
 
     private bool EvaluateCurrent(int frame)

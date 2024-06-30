@@ -13,7 +13,7 @@ public class ColorChange : MonoBehaviour
     [SerializeField] private Color m_targetColor;
     [SerializeField] private AnimationCurveSO m_curve;
 
-    [SerializeField] private MeshRenderer m_render;
+    [SerializeField] private Renderer m_render;
     private Color m_defaultColor;
 
     private TimeoutTickPercent m_timer;

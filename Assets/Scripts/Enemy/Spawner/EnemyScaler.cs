@@ -21,6 +21,8 @@ public abstract class EnemyScaler : MonoBehaviour
 {
     private static readonly int m_defaultScale = 10;
 
+    [SerializeField] private BeatStatsManagerSO m_manager;
+
     [Header("NavMesh Settings")]
     [SerializeField] private ScaleData<float> m_speed = new() { Enable = true, MinValue = 3.5f, MaxValue = 10f, EndScale = m_defaultScale };
     [SerializeField] private ScaleData<float> m_angularSpeed = new() { Enable = true, MinValue = 120, MaxValue = 360, EndScale = m_defaultScale };
@@ -47,13 +49,13 @@ public abstract class EnemyScaler : MonoBehaviour
         var enemy = go.GetComponent<Enemy>();
 
         if (m_speed.Enable)
-            enemy.Agent.speed = Calc(m_speed, spawnCount);
+            enemy.Agent.speed = CalcSpeed(m_speed, spawnCount);
 
         if (m_angularSpeed.Enable)
-            enemy.Agent.angularSpeed = Calc(m_angularSpeed, spawnCount);
+            enemy.Agent.angularSpeed = CalcSpeed(m_angularSpeed, spawnCount);
 
         if (m_acceleration.Enable)
-            enemy.Agent.angularSpeed = Calc(m_acceleration, spawnCount);
+            enemy.Agent.acceleration = CalcSpeed(m_acceleration, spawnCount);
 
         if (m_health.Enable)
             enemy.Damageable.SetMaxHealth(Calc(m_health, spawnCount));
@@ -64,13 +66,24 @@ public abstract class EnemyScaler : MonoBehaviour
         return go;
     }
 
-    private float Calc(ScaleData<float> data, int spawnCount)
+    protected float Calc(ScaleData<float> data, int spawnCount)
     {
         float percent = (spawnCount - data.StartScale) / (data.EndScale - data.StartScale);
 
         if (percent < 1)
         {
             return Mathf.Lerp(data.MinValue, data.MaxValue, percent);
+        }
+        return data.MaxValue;
+    }
+
+    protected float CalcSpeed(ScaleData<float> data, int spawnCount)
+    {
+        float percent = (spawnCount - data.StartScale) / (data.EndScale - data.StartScale);
+
+        if (percent < 1)
+        {
+            return Mathf.Lerp(data.MinValue, data.MaxValue, percent) * m_manager.SpeedMultiplier;
         }
         return data.MaxValue;
     }

@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_maxJumpHeight = 4f;
     [SerializeField] private float m_maxJumpTime = 0.75f;
 
+    [SerializeField] private BeatStatsManagerSO m_statsManagerSO;
 
     private IA_Movement m_inputActions;
     private CharacterController m_controller;
@@ -113,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 val = context.ReadValue<Vector2>() * m_speed;
+        Vector2 val = context.ReadValue<Vector2>() * m_speed * m_statsManagerSO.SpeedMultiplier;
 
         m_movement.x = val.x;
         m_movement.z = val.y;

@@ -111,7 +111,7 @@ MonoBehaviour:
   offsetPosition: {x: 0, y: 0, z: 0}
   wasHit: 0
   m_onHitNoise: {fileID: 8300000, guid: 8b5db8732b83a4bc18b2e60c2a872ed3, type: 3}
-  m_playSFX: {fileID: 11400000, guid: f77b4db6ad6f7bc45be8295d128c60b6, type: 2}
+  m_playSFX: {fileID: 11400000, guid: af12d8526e8b4d34fac04fea94e8b4e6, type: 2}
 --- !u!135 &1216835211522228433
 SphereCollider:
   m_ObjectHideFlags: 0

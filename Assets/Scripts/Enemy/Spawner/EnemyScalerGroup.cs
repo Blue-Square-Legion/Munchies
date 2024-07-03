@@ -11,6 +11,7 @@ public class EnemyScalerGroup : EnemyScaler
     [SerializeField] private List<GameObject> m_prefab;
 
 
+
     private int m_randomIndex => Random.Range(0, m_prefab.Count);
 
     public override GameObject Spawn(Vector3 position, Quaternion rotation, Transform parent)

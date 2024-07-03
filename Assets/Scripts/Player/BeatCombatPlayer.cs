@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -20,27 +21,40 @@ public struct BeatLeniency
  */
 public class BeatCombatPlayer : CombatPlayer
 {
+    [SerializeField] private AttackData m_missAttack, m_perfectAttack;
     [SerializeField] private BaseAttackComponent m_critAttack;
+
+    [Header("Attack CD")]
+    [SerializeField, Range(0.01f, 1), Tooltip("Attack Cooldown = percent of Beat in seconds")]
+    private float m_attackCooldownPercent = 0.8f;
+    [SerializeField] private float m_minAttackCooldown = 0.2f;
 
     private Timeout m_timeout;
     private bool m_canShoot = true;
 
     public UnityEvent m_frameAlreadyCompleted;
 
-    private float m_baseDamage;
+    private AttackData m_normalAttack;
+
+
+    public void HandleBPMChange()
+    {
+        if (m_timeout == null) return;
+        float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * m_attackCooldownPercent, m_minAttackCooldown);
+        m_timeout.targetTime = cooldownTime;
+    }
+
 
     private void Start()
     {
-        m_baseDamage = attackData.damage;
+        m_normalAttack = attackData;
 
-        float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * 0.25f, 0.2f);
-
-        print(cooldownTime);
-
-        m_timeout = new(cooldownTime);
+        m_timeout = new(m_minAttackCooldown);
         m_timeout.isRunning = false;
         m_timeout.OnStart = () => m_canShoot = false;
         m_timeout.OnComplete = () => m_canShoot = true;
+
+        HandleBPMChange();
     }
 
     private void Update()
@@ -64,6 +78,7 @@ public class BeatCombatPlayer : CombatPlayer
         switch (BeatTracker.Instance.CheckBeat())
         {
             case BeatType.Warn:
+                TriggerMissAttack();
                 return;
             case BeatType.Perfect:
                 TriggerCritAttack();
@@ -75,22 +90,30 @@ public class BeatCombatPlayer : CombatPlayer
                 TriggerNormalAttack();
                 break;
             case BeatType.Miss:
+                TriggerMissAttack();
                 break;
         }
-
-
     }
 
     private void TriggerNormalAttack()
     {
-        attackData.damage = m_baseDamage;
+        attackData = m_normalAttack;
         TriggerAttack(transform.forward * forwardOffset);
+        m_timeout.Start();
     }
 
     private void TriggerCritAttack()
     {
-        attackData.damage = 2 * m_baseDamage;
+        attackData = m_perfectAttack;
         m_critAttack?.Attack(this, transform.forward * forwardOffset);
+        m_timeout.Start();
+    }
+
+    private void TriggerMissAttack()
+    {
+        attackData = m_missAttack;
+        TriggerAttack(transform.forward * forwardOffset);
+        m_timeout.Start();
     }
 
 }

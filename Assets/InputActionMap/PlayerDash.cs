@@ -8,8 +8,22 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private float m_dashTime = 0.12f;
     [SerializeField] private float m_speed = 40;
 
+    [SerializeField] private float m_perfectMulti = 1.5f;
+    [SerializeField] private float m_normalMulti = 1f;
+    [SerializeField] private float m_missMulti = 0.5f;
+
+
+    [Header("Dash CD")]
+    [SerializeField, Range(0.01f, 1), Tooltip("Attack Cooldown = percent of Beat in seconds")]
+    private float m_CooldownPercent = 0.8f;
+    [SerializeField] private float m_minCooldown = 0.2f;
+
+    private Timeout m_cooldownTimeout;
+    private bool m_onCooldown = false;
+
     private TimeoutTick m_timeout;
     private CharacterController m_characterController;
+    private Collider m_collider;
     //private PlayerMovement m_playerMovement;
     private IA_Movement m_movement;
 
@@ -19,7 +33,12 @@ public class PlayerDash : MonoBehaviour
     {
         m_movement = new IA_Movement();
         m_characterController = GetComponent<CharacterController>();
+        m_collider = GetComponent<Collider>();
+    }
 
+
+    private void Start()
+    {
         m_timeout = new(m_dashTime);
         m_timeout.isRunning = false;
         m_timeout.OnTick += HandleDashTick;
@@ -28,6 +47,20 @@ public class PlayerDash : MonoBehaviour
         //m_playerMovement = GetComponent<PlayerMovement>();
         //m_timeout.OnComplete += () => m_playerMovement.enabled = true;
 
+
+        m_cooldownTimeout = new(m_minCooldown);
+        m_cooldownTimeout.isRunning = false;
+        m_cooldownTimeout.OnStart = () => m_onCooldown = false;
+        m_cooldownTimeout.OnComplete = () => m_onCooldown = true;
+
+        HandleBPMChange();
+    }
+
+    public void HandleBPMChange()
+    {
+        if (m_cooldownTimeout == null) return;
+        float cooldownTime = Mathf.Max((float)Conductor.Instance.data.secPerBeat * m_CooldownPercent, m_minCooldown);
+        m_cooldownTimeout.targetTime = cooldownTime;
     }
 
     private void OnEnable()
@@ -53,21 +86,25 @@ public class PlayerDash : MonoBehaviour
         m_characterController.Move(m_direction * deltaTime);
     }
 
-    private void HandleDashEnd()
-    {
-        m_characterController.detectCollisions = true;
-    }
+
 
     private void OnSprintPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        if (m_onCooldown) return;
+
         BeatType type = BeatTracker.Instance.CheckBeat();
         switch (type)
         {
             case BeatType.Perfect:
+                HandleDash(m_perfectMulti);
+                break;
             case BeatType.Normal:
             case BeatType.Late:
             case BeatType.Early:
-                HandleDash();
+                HandleDash(m_normalMulti);
+                break;
+            default:
+                HandleDash(m_missMulti);
                 break;
         }
     }
@@ -78,14 +115,19 @@ public class PlayerDash : MonoBehaviour
         m_timeout.Start();
     }
 
-    private void HandleDash()
+    private void HandleDash(float multiplier = 1)
     {
-        Vector2 val = m_movement.Player.Move.ReadValue<Vector2>() * m_speed;
+        Vector2 val = m_movement.Player.Move.ReadValue<Vector2>().normalized * m_speed * multiplier;
 
         m_direction.x = val.x;
         m_direction.z = val.y;
 
         m_characterController.detectCollisions = false;
         m_timeout.Start();
+    }
+
+    private void HandleDashEnd()
+    {
+        m_characterController.detectCollisions = true;
     }
 }

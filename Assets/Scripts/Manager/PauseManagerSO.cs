@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "PauseManager", menuName = "Manager/Pause")]
 public class PauseManagerSO : ScriptableObject
 {
     public EventSO.EventChannelSO OnPause;
+    public EventSO.EventChannelSO OnResume;
 
     public bool IsPaused { private set; get; } = false;
 
@@ -14,24 +16,44 @@ public class PauseManagerSO : ScriptableObject
         IsPaused = false;
     }
 
-    public void Toggle()
+    public bool Toggle()
     {
         if (IsPaused = !IsPaused)
         {
-            Pause();
+            PauseTime();
         }
         else
         {
             Resume();
         }
+
+        return IsPaused;
+    }
+
+    public bool ToggleNotify()
+    {
+        if (IsPaused = !IsPaused)
+        {
+            NotifyPause();
+        }
+        else
+        {
+            Resume();
+        }
+
+        return IsPaused;
+    }
+
+    public void NotifyPause()
+    {
+        OnPause.Invoke();
+        IsPaused = true;
     }
 
     public void PauseTime()
     {
+        NotifyPause();
         Time.timeScale = 0;
-        IsPaused = true;
-
-        OnPause.Invoke();
         Conductor.Instance.enabled = !IsPaused;
     }
 
@@ -43,6 +65,7 @@ public class PauseManagerSO : ScriptableObject
 
     public void Resume()
     {
+        OnResume.Invoke();
         AudioListener.pause = false;
         Time.timeScale = 1;
         IsPaused = false;

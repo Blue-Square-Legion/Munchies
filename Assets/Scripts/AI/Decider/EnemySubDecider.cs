@@ -20,6 +20,12 @@ public class EnemySubDecider
     {
         return Attack.Action(enemy, frame);
     }
+
+    public virtual void EarlyTrigger(Enemy enemy, int frame)
+    {
+        Attack.EarlyTrigger(enemy, frame);
+    }
+
     public virtual void Reset()
     {
         Attack.Reset();

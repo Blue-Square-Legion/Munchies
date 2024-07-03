@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2864398714005368284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4880107734052444683}
+  - component: {fileID: 4166053263137610541}
+  - component: {fileID: 4299373022417649113}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4880107734052444683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864398714005368284}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4166053263137610541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864398714005368284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828a1cdb40889ee4eb9b7d72754c42f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMusic:
+  - Name: 50s Track by Jasmina
+    clip: {fileID: 8300000, guid: f51f93f1d7f386f46b8aa57b589ed510, type: 3}
+    BPM: 170
+  - Name: Bumper Mart By Jaeus
+    clip: {fileID: 8300000, guid: 2bbfeca29e0702d428c470be31f27e7c, type: 3}
+    BPM: 134
+  CurrentMusic:
+    Name: 
+    clip: {fileID: 0}
+    BPM: 0
+  OnMusicChangeChannel: {fileID: 11400000, guid: 06779f6667d5f0b46a295a4b0e147fa2,
+    type: 2}
+  OnMusicAddedChannel: {fileID: 11400000, guid: 6a025524957862d46bdf70f0668ddd4d,
+    type: 2}
+  OnBPMChangeChannel: {fileID: 11400000, guid: 14a2d5e936be85f4086790dfa6e5f18b, type: 2}
+--- !u!114 &4299373022417649113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2864398714005368284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55aad9c0888617439a65166c813a5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_eventChannel: {fileID: 11400000, guid: 576dab6bfd937d54b91f4e9562ab85b5, type: 2}
+  OnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4166053263137610541}
+        m_TargetAssemblyTypeName: PlayerMusicManager, Assembly-CSharp
+        m_MethodName: SetMusic
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

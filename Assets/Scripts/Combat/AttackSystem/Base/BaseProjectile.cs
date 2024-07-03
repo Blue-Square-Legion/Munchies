@@ -22,13 +22,15 @@ public abstract class BaseProjectile : BaseAttackComponent
 
     public override void Attack(BaseCombat owner, Vector3 offset)
     {
-        if (owner.attackData.NumProjectile <= 1)
+        AttackData data = owner.attackData.Clone<AttackData>();
+
+        if (data.NumProjectile <= 1)
         {
-            Spawn(gameObject, owner.attackData, owner.transform.position + offset, owner.transform.rotation);
+            Spawn(gameObject, data, owner.transform.position + offset, owner.transform.rotation);
         }
         else
         {
-            SpawnMultiple(gameObject, owner.attackData, owner.transform.position + offset, owner.transform.forward);
+            SpawnMultiple(gameObject, data, owner.transform.position + offset, owner.transform.forward);
         }
     }
 }

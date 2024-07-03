@@ -44,6 +44,11 @@ public class BeatTracker : MonoBehaviour
         }
     }
 
+    public void TriggerBeat()
+    {
+        CheckBeat();
+    }
+
     public BeatType CheckBeat()
     {
         double position = Conductor.Instance.BeatFracSec;

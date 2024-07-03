@@ -10,10 +10,10 @@ public struct ConductorData
     //The number of seconds for each song beat
     public double secPerBeat;
 
-    //Current song position, in seconds
+    //CurrentMusic song position, in seconds
     public double songPosition;
 
-    //Current song position, in beats
+    //CurrentMusic song position, in beats
     public double songPositionInBeats;
 
     //How many seconds have passed since the song started
@@ -22,6 +22,8 @@ public struct ConductorData
 
 public class Conductor : MonoBehaviour
 {
+    [SerializeField] private MusicDataEventChannel m_onMusicChanged;
+
     public static Conductor Instance;
 
     //Song beats per minute
@@ -35,6 +37,7 @@ public class Conductor : MonoBehaviour
 
     public UnityEvent<int> OnBeatBefore;
     public UnityEvent<int> OnBeatCurrent;
+    public UnityEvent<float> OnBPMChange;
 
     public int songPositionInBeatInt { get; private set; }
     public double BeatFrac => data.songPositionInBeats - (int)data.songPositionInBeats;
@@ -60,19 +63,42 @@ public class Conductor : MonoBehaviour
         //Load the AudioSource attached to the Conductor GameObject
         m_musicSource = GetComponent<AudioSource>();
 
-        data = new() { secPerBeat = 60 / songBpm };
+        OnBPMChange.Invoke(songBpm);
+    }
+
+    private void OnEnable()
+    {
+        m_onMusicChanged.AddEventListener(HandleMusicChange);
+        //PlayerMusicManager.OnMusicChanged += HandleMusicChange;
+    }
+
+    private void OnDisable()
+    {
+        m_onMusicChanged.RemoveEventListener(HandleMusicChange);
+        //PlayerMusicManager.OnMusicChanged -= HandleMusicChange;
+    }
+
+    private void HandleMusicChange(MusicDataFormat data)
+    {
+        print($"Music Changed: {data.Name}");
+
+        songBpm = data.BPM;
+        Setup();
+        m_musicSource.clip = data.clip;
+        m_musicSource.Play();
+
+        OnBPMChange.Invoke(songBpm);
     }
 
     private void Start()
     {
-        //Record the time when the music starts
-        data.dspSongTime = (float)AudioSettings.dspTime;
-
-        //Start the music
-        m_musicSource.Play();
+        HandleMusicChange(PlayerMusicManager.Instance.CurrentMusic);
     }
 
-
+    private void Setup()
+    {
+        data = new() { secPerBeat = 60 / songBpm, dspSongTime = AudioSettings.dspTime };
+    }
 
     // Update is called once per frame
     private void Update()

@@ -64,6 +64,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: af12d8526e8b4d34fac04fea94e8b4e6,
         type: 2}
+    - target: {fileID: 4630049299687234141, guid: f54ae5ce2bdaa4c4f8c4537174d916ba,
+        type: 3}
+      propertyPath: m_onHitNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b5db8732b83a4bc18b2e60c2a872ed3, type: 3}
     - target: {fileID: 6838002088243256955, guid: f54ae5ce2bdaa4c4f8c4537174d916ba,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

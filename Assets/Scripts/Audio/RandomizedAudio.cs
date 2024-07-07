@@ -6,8 +6,8 @@ using UnityEngine;
 public class RandomizedAudio : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float m_max = 1f;
-    [SerializeField] private float m_min = 1.5f;
+    [SerializeField] private float m_max = -0.5f;
+    [SerializeField] private float m_min = 0.5f;
 
 
     [Header("Reference")]
